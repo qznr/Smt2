@@ -1,12 +1,15 @@
+package Februari;
 public class Car {
     private String color;
     private int speed;
     private int power;
-    
+    public Car(String color, int speed, int power){
+        this.color = color;
+        this.speed = speed;
+        this.power = power;
+    }
     public void drive(){
-        int power = 10000;
         System.out.println("drive");
-        System.out.println("drive power " + this.power);
     }
     public void turnRight(){
         System.out.println("turnRight");
