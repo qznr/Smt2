@@ -16,5 +16,9 @@ public class Test {
         System.out.println("Color : " + ferrari.getColor());
         System.out.println("Speed : " + ferrari.getSpeed());
         System.out.println("Power : " + ferrari.getPower());
+        Rectangle rectangle1 = new Rectangle(12, 8);
+        System.out.println(rectangle1.area());
+        System.out.println(rectangle1.circumference());
+        
     }
 }
