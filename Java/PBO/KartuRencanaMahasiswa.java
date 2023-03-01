@@ -4,26 +4,32 @@ public class KartuRencanaMahasiswa {
     private Scanner in = new Scanner(System.in);
     private int jumlahMataKuliah;
     private String[] mataKuliah;
+    private String[] kodeMatkul;
 
     private void tambahMataKuliah(){
         System.out.print("Masukkan jumlah mata kuliah yang ingin diambil : ");
         jumlahMataKuliah = in.nextInt();
         in.nextLine();
         mataKuliah = new String[jumlahMataKuliah];
+        kodeMatkul = new String[jumlahMataKuliah];
         System.out.println("Masukkan nama mata kuliah yang ingin diambil : ");
         for (int i = 0; i < mataKuliah.length; i++) {
-            mataKuliah[i] = in.nextLine();
+            kodeMatkul[i] = in.next();
+            mataKuliah[i] = in.next();
+            in.nextLine();
         }
     }
     private void print(){
         if(jumlahMataKuliah>5){
             System.out.println("\nError : KRS sudah penuh\nDaftar Mata Kuliah:");
             for (int i = 0; i < 5; i++) {
+                System.out.printf("%s: ",kodeMatkul[i]);
                 System.out.println(mataKuliah[i]);
             }
         } else{
             System.out.println("\nDaftar Mata Kuliah:");
             for (int i = 0; i < mataKuliah.length; i++) {
+                System.out.printf("%s: ",kodeMatkul[i]);
                 System.out.println(mataKuliah[i]);
             }
         }
