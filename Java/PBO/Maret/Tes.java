@@ -1,12 +1,18 @@
 package Maret;
 
 public class Tes {
+
+    public static void hitungPajak(Pegawai peg){
+        System.out.println(peg instanceof Pegawai);
+        System.out.println(peg instanceof Manager);
+    }
+
     public static void main(String[] args) {
 
         Pegawai tapiManager = new Manager("Keuangan","Bapa Rafael",999999);
         tapiManager.print();
         System.out.println("====================");
-
+        hitungPajak(tapiManager);
         // Polimorfisme hanya bisa memanggil diatasnya
         // Manager tapiPegawai = new Pegawai("Bukan Rafael", 0);
         // tapiPegawai.print();
