@@ -4,7 +4,6 @@ public class Car {
     private int power;
     
     public void drive(){
-        int power = 10000;
         System.out.println("drive");
         System.out.println("drive power " + this.power);
     }

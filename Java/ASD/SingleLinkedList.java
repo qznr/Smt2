@@ -1,11 +1,11 @@
 package Java.ASD;
 
-public class LinkedList {
+public class SingleLinkedList {
     Node kepala;
     Node ekor;
     int size;
 
-    public LinkedList(){
+    public SingleLinkedList(){
         this.kepala = null;
         this.ekor = null;
     }
@@ -25,6 +25,7 @@ public class LinkedList {
             nodeBaru.pointer = kepala;
             kepala = nodeBaru;
         }
+        size++;
     }
 
     public void addLast (Node nodeBaru){
@@ -50,7 +51,50 @@ public class LinkedList {
             }
             temp = temp.pointer;
         }
+        size++;
     }
 
-    public
+    public int get(int index){
+        Node temp = kepala;
+        if (index<size){
+            for (int i = 0; i < index; i++) {
+                temp = temp.pointer;
+            }
+            return temp.data;
+        } else {
+            return -1;
+        }
+        
+        
+    }
+
+    public void print() {
+        Node temp = kepala;
+        while (temp != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.pointer;
+
+        }
+    }
+
+    public void deleteFirst(){
+        if (kepala != null){
+            kepala = kepala.pointer;
+        }
+        size--;
+    }
+
+    public void deleteLast(){
+        if (kepala != null){
+            Node temp = kepala;
+            while(temp.pointer!=ekor){
+                temp = temp.pointer;
+            }
+            ekor = temp;
+            ekor.pointer = null;
+        } else {
+            kepala = ekor = null;
+        }
+        size--;
+    }
 }
