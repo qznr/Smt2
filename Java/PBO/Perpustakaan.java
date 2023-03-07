@@ -3,6 +3,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Perpustakaan {
+    private Scanner in;
     private String kategori;
     private String judul;
     private String[] penulis;
@@ -14,7 +15,7 @@ public class Perpustakaan {
     }
 
     public void print(){
-        System.out.printf("Kategori = %-10s Judul = %s\n",this.kategori, this.judul);
+        System.out.printf("Kategori = %s\nJudul = %s\n",kategori, judul);
         System.out.println("Penulis : ");
         for (int i = 0; i < penulis.length; i++) {
             System.out.printf("%d. %s\n",i+1,penulis[i]);
@@ -25,15 +26,15 @@ public class Perpustakaan {
         Scanner in = new Scanner(System.in);
         int jumlahKategori = in.nextInt();
         ArrayList<Perpustakaan> perpus = new ArrayList<Perpustakaan>();
+        System.out.println("");
         for (int i = 0; i < jumlahKategori; i++) {
             String kategori = in.next();
             int jumlahBuku = in.nextInt(); in.nextLine();
             for (int j = 0; j < jumlahBuku; j++) {
                 String judul = in.nextLine();
                 String penulis = in.nextLine();
-                String[] listPenulis = penulis.split("[ ,_-]+");
-                String[] temp = Arrays.copyOfRange(listPenulis, 1, listPenulis.length);
-                Perpustakaan buku = new Perpustakaan(kategori, judul, temp);
+                String[] listPenulis = penulis.split("_");
+                Perpustakaan buku = new Perpustakaan(kategori, judul, listPenulis);
                 perpus.add(buku);
             }
         }
