@@ -1,9 +1,7 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Perpustakaan {
-    private Scanner in;
     private String kategori;
     private String judul;
     private String[] penulis;
@@ -26,7 +24,6 @@ public class Perpustakaan {
         Scanner in = new Scanner(System.in);
         int jumlahKategori = in.nextInt();
         ArrayList<Perpustakaan> perpus = new ArrayList<Perpustakaan>();
-        System.out.println("");
         for (int i = 0; i < jumlahKategori; i++) {
             String kategori = in.next();
             int jumlahBuku = in.nextInt(); in.nextLine();

@@ -131,7 +131,7 @@ public class Main {
     public static void main(String[] args) {
         Karyawan dokterApriliano = new DokterHewan("Apriliano","Solo","0808","L","Dokter Hewan",999999,100000);
         Karyawan dokterGustav = new DokterHewan("Gustav","Nganjuk","0808","L","Dokter Hewan",9999999,150000);
-        Karyawan groomerHadi = new Groomer("Hadi","Jakarta","0808","L","Groomer",0,200000);
+        Karyawan groomerHadi = new DokterHewan("Hadi","Jakarta","0808","L","Groomer",0,200000);
         daftarKaryawan.add(dokterGustav);
         daftarKaryawan.add(dokterApriliano);
         daftarKaryawan.add(groomerHadi);
