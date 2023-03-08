@@ -20,6 +20,10 @@ public class Karyawan {
         this.gaji = gaji;
     }                              
 
+    public String getNama(){
+        return nama;
+    }
+
     public void print(){
         System.out.println("Nama\t\t= " + nama);
         System.out.println("Alamat\t\t= " + alamat);
