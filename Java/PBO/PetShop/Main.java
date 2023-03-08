@@ -6,11 +6,11 @@ import PetShop.Customer.*;
 import PetShop.Karyawan.*;
 
 public class Main {
+    static Scanner in = new Scanner(System.in);
     static ArrayList <Hewan> daftarCustomer = new ArrayList<Hewan>();
     static ArrayList <Karyawan> daftarKaryawan = new ArrayList<Karyawan>();
 
     static void input(String jenis){
-        Scanner in = new Scanner(System.in);
         System.out.print("Nama\t: "); String nama = in.nextLine();
         System.out.print("Alamat\t: "); String alamat = in.nextLine();
         System.out.print("Telepon\t: "); String telepon = in.nextLine();
@@ -66,7 +66,6 @@ public class Main {
     }
 
     static void inputAtauOutput(String jenis){
-        Scanner in = new Scanner(System.in);
         System.out.println("1. Input\n2. Output\n3. Back");
         System.out.println("Pilihan anda : ");
         int pilihanMode = in.nextInt();
@@ -83,7 +82,6 @@ public class Main {
     }
 
     static void pilihKaryawan(){
-        Scanner in = new Scanner(System.in);
         System.out.println("1. Admin\n2. Dokter Hewan\n3. Groomer\n4. Back");
         System.out.print("Pilihan anda :");
         int pilihanMode = in.nextInt();
@@ -107,7 +105,6 @@ public class Main {
     }
 
     static void ui(){
-        Scanner in = new Scanner(System.in);
         System.out.println("\nInterface Admin :");
         System.out.println("1. Karyawan\n2. Customer (Hewan)");
         System.out.print("Pilihan anda : ");
@@ -131,9 +128,11 @@ public class Main {
     public static void main(String[] args) {
         Karyawan dokterApriliano = new DokterHewan("Apriliano","Solo","0808","L","Dokter Hewan",999999,100000);
         Karyawan dokterGustav = new DokterHewan("Gustav","Nganjuk","0808","L","Dokter Hewan",9999999,150000);
+        Karyawan adminFarel = new Admin("Farel","Rembang","0808","L","Admin",9999999);
         Karyawan groomerHadi = new DokterHewan("Hadi","Jakarta","0808","L","Groomer",0,200000);
         daftarKaryawan.add(dokterGustav);
         daftarKaryawan.add(dokterApriliano);
+        daftarKaryawan.add(adminFarel);
         daftarKaryawan.add(groomerHadi);
         ui();
         // for (int i = 0; i < daftarKaryawan.size(); i++) {
