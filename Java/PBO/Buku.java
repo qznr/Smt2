@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.text.DecimalFormat;
 
@@ -54,7 +53,6 @@ public class Buku {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        // ArrayList<Buku> kumpulanBuku = new ArrayList<Buku>();
         int jumlahBuku = in.nextInt(); in.nextLine();
         Buku[] kumpulanBuku = new Buku[jumlahBuku];
         double[] penjualan = new double[jumlahBuku];
@@ -63,11 +61,11 @@ public class Buku {
             String sinopsis = in.nextLine();
             double harga = in.nextDouble(); in.nextLine();
             String input = in.nextLine();
-            String[] params = input.split(" ");
-            penjualan[i]  = Double.parseDouble(params[0]);
+            String[] parameters = input.split(" ");
+            penjualan[i]  = Double.parseDouble(parameters[0]);
             persentase[i] = 0;
-            if (params.length > 1) {
-                persentase[i] = Double.parseDouble(params[1]);
+            if (parameters.length > 1) {
+                persentase[i] = Double.parseDouble(parameters[1]);
             }
             kumpulanBuku[i] = new Buku(sinopsis, harga);
         }
