@@ -1,5 +1,6 @@
 package PetShop;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 import PetShop.Customer.*;
@@ -10,53 +11,128 @@ public class Main {
     static Boolean[] layanan = new Boolean[2];
     static ArrayList <Hewan> daftarCustomer = new ArrayList<Hewan>();
     static ArrayList <Karyawan> daftarKaryawan = new ArrayList<Karyawan>();
+    static DecimalFormat decimalFormat = new DecimalFormat("###,###.00");
+
+    static void inputInvalid(){
+        System.out.println("Tolong berikan input yang valid!"); in.nextLine();
+    }
+
+    // static void inputKaryawan(String jenis){
+    //     System.out.print("Nama\t\t: "); String nama = in.nextLine();
+    //     System.out.print("Alamat\t\t: "); String alamat = in.nextLine();
+    //     System.out.print("Telepon\t\t: "); String telepon = in.nextLine();
+    //     System.out.print("Jenis Kelamin\t: "); String jenisKelamin = in.nextLine();
+    //     int gaji = 0;
+    //     try {
+    //         System.out.print("Gaji\t\t: "); gaji = in.nextInt(); in.nextLine();
+    //     } catch (Exception e) {
+    //         inputInvalid();
+    //         inputKaryawan(jenis);
+    //     }
+    //     switch (jenis){
+    //         case "Admin":
+    //             int menangani = 0;
+    //             try {
+    //                 System.out.print("Terlayani\t: "); menangani = in.nextInt();
+    //             } catch (Exception e) {
+    //                 inputInvalid();
+    //                 inputKaryawan(jenis);
+    //                 break;
+    //             }
+    //             Karyawan admin = new Admin(nama,alamat,telepon,jenisKelamin,jenis,gaji,menangani);
+    //             daftarKaryawan.add(admin);
+    //             break;
+    //         case "Dokter Hewan":
+    //             float biayaPeriksa = 0;
+    //             try {
+    //                 System.out.print("Biaya Periksa\t: "); biayaPeriksa = in.nextFloat();
+    //             } catch (Exception e) {
+    //                 inputInvalid();
+    //                 inputKaryawan(jenis);
+    //                 break;
+    //             }
+    //             Karyawan dokterHewan = new DokterHewan(nama,alamat,telepon,jenisKelamin,jenis,gaji,biayaPeriksa);
+    //             daftarKaryawan.add(dokterHewan);
+    //             break;
+    //         case "Groomer":
+    //             float biayaPerawatan = 0;
+    //             try {
+    //                 System.out.print("Biaya Perawatan\t:"); biayaPerawatan = in.nextFloat();
+    //             } catch (Exception e) {
+    //                 inputInvalid();
+    //                 inputKaryawan(jenis);
+    //                 break;
+    //             }
+    //             Karyawan groomer = new Groomer(nama,alamat,telepon,jenisKelamin,jenis,gaji,biayaPerawatan);
+    //             daftarKaryawan.add(groomer);
+    //             break;
+    //     }
+    // }
 
     static void inputKaryawan(String jenis){
-        System.out.print("Nama\t\t: "); String nama = in.nextLine();
-        System.out.print("Alamat\t\t: "); String alamat = in.nextLine();
-        System.out.print("Telepon\t\t: "); String telepon = in.nextLine();
-        System.out.print("Jenis Kelamin\t\t: "); String jenisKelamin = in.nextLine();
-        System.out.println("Gaji\t\t: "); int gaji = in.nextInt(); in.nextLine();
-        switch (jenis){
-            case "Admin":
-            System.out.print("Menangani\t\t: "); int menangani = in.nextInt();
-                Karyawan admin = new Admin(nama,alamat,telepon,jenisKelamin,jenis,gaji,menangani);
-                daftarKaryawan.add(admin);
-                break;
-            case "Dokter Hewan":
-                System.out.print("Biaya Periksa\t\t: "); float biayaPeriksa = in.nextFloat();
-                Karyawan dokterHewan = new DokterHewan(nama,alamat,telepon,jenisKelamin,jenis,gaji,biayaPeriksa);
-                daftarKaryawan.add(dokterHewan);
-                break;
-            case "Groomer":
-                System.out.print("Biaya Perawatan\t\t:"); float biayaPerawatan = in.nextFloat();
-                Karyawan groomer = new Groomer(nama,alamat,telepon,jenisKelamin,jenis,gaji,biayaPerawatan);
-                daftarKaryawan.add(groomer);
-                break;
+        try {
+            System.out.print("Nama\t\t: "); String nama = in.nextLine();
+            System.out.print("Alamat\t\t: "); String alamat = in.nextLine();
+            System.out.print("Telepon\t\t: "); String telepon = in.nextLine();
+            System.out.print("Jenis Kelamin\t: "); String jenisKelamin = in.nextLine();
+            int gaji = 0;
+            System.out.print("Gaji\t\t: "); gaji = in.nextInt(); in.nextLine();
+            switch (jenis){
+                case "Admin":
+                    int menangani = 0;
+                    System.out.print("Terlayani\t: "); menangani = in.nextInt();
+                    Karyawan admin = new Admin(nama,alamat,telepon,jenisKelamin,jenis,gaji,menangani);
+                    daftarKaryawan.add(admin);
+                    break;
+                case "Dokter Hewan":
+                    float biayaPeriksa = 0;
+                    System.out.print("Biaya Periksa\t: "); biayaPeriksa = in.nextFloat();
+                    Karyawan dokterHewan = new DokterHewan(nama,alamat,telepon,jenisKelamin,jenis,gaji,biayaPeriksa);
+                    daftarKaryawan.add(dokterHewan);
+                    break;
+                case "Groomer":
+                    float biayaPerawatan = 0;
+                    System.out.print("Biaya Perawatan\t: "); biayaPerawatan = in.nextFloat();
+                    Karyawan groomer = new Groomer(nama,alamat,telepon,jenisKelamin,jenis,gaji,biayaPerawatan);
+                    daftarKaryawan.add(groomer);
+                    break;
+            }
+        } catch (Exception e) {
+            inputInvalid();
+            inputKaryawan(jenis);
         }
+        
     }
 
     static void inputHewan(String jenis){
-        System.out.print("No\t\t: "); String noPelanggan = in.nextLine();
-        System.out.print("Nama Hewan\t\t: "); String namaHewan = in.nextLine();
-        System.out.print("Warna Hewan\t\t: "); String warnaHewan = in.nextLine();
-        System.out.print("Tahun Kelahiran\t\t: "); int tahunKelahiran = in.nextInt();
-        switch (jenis){
-            case "Anjing":
-                System.out.print("Ras\t\t: "); String rasAnjing = in.nextLine();
-                Hewan anjing = new Anjing(noPelanggan,namaHewan,warnaHewan,tahunKelahiran,jenis,rasAnjing);
-                daftarCustomer.add(anjing);
-                break;
-            case "Kucing":
-                System.out.print("Ras\t\t: "); String rasKucing = in.nextLine();
-                Hewan kucing = new Kucing(noPelanggan,namaHewan,warnaHewan,tahunKelahiran,jenis,rasKucing);
-                daftarCustomer.add(kucing);
-                break;
-            case "Groomer":
-                System.out.print("Ras\t\t: "); String rasKelinci = in.nextLine();
-                Hewan kelinci = new Kelinci(noPelanggan,namaHewan,warnaHewan,tahunKelahiran,jenis,rasKelinci);
-                daftarCustomer.add(kelinci);
-                break;
+        try {
+            System.out.print("No\t\t: "); String noPelanggan = in.nextLine();
+            System.out.print("Nama Hewan\t: "); String namaHewan = in.nextLine();
+            System.out.print("Warna Hewan\t: "); String warnaHewan = in.nextLine();
+            int tahunKelahiran = 0;
+            System.out.print("Tahun Kelahiran\t: "); tahunKelahiran = in.nextInt(); in.nextLine();
+                
+            
+            switch (jenis){
+                case "Anjing":
+                    System.out.print("Ras\t\t: "); String rasAnjing = in.nextLine();
+                    Hewan anjing = new Anjing(noPelanggan,namaHewan,warnaHewan,tahunKelahiran,jenis,rasAnjing);
+                    daftarCustomer.add(anjing);
+                    break;
+                case "Kucing":
+                    System.out.print("Ras\t\t: "); String rasKucing = in.nextLine();
+                    Hewan kucing = new Kucing(noPelanggan,namaHewan,warnaHewan,tahunKelahiran,jenis,rasKucing);
+                    daftarCustomer.add(kucing);
+                    break;
+                case "Kelinci":
+                    System.out.print("Ras\t\t: "); String rasKelinci = in.nextLine();
+                    Hewan kelinci = new Kelinci(noPelanggan,namaHewan,warnaHewan,tahunKelahiran,jenis,rasKelinci);
+                    daftarCustomer.add(kelinci);
+                    break;
+            }
+        } catch (Exception e) {
+            inputInvalid();
+            inputHewan(jenis);
         }
     }
 
@@ -66,6 +142,7 @@ public class Main {
                 for (int i=0;i<daftarKaryawan.size();i++){
                     if (daftarKaryawan.get(i) instanceof Admin){
                         daftarKaryawan.get(i).print();
+                        System.out.printf("Terlayani\t= %d\n\n",((Admin)daftarKaryawan.get(i)).getTerlayani());
                     }
                 }
                 break;
@@ -74,7 +151,7 @@ public class Main {
                     if (daftarKaryawan.get(i) instanceof DokterHewan){
                         daftarKaryawan.get(i).print();
                         float biaya = ((DokterHewan)daftarKaryawan.get(i)).getBiayaPeriksa();
-                        System.out.printf("Biaya Periksa\t\t= %.0f\n\n",biaya);
+                        System.out.printf("Biaya Periksa\t= %s\n\n",decimalFormat.format(biaya));
                     }
                 }
                 break;
@@ -83,7 +160,7 @@ public class Main {
                     if (daftarKaryawan.get(i) instanceof Groomer){
                         daftarKaryawan.get(i).print();
                         float biaya = ((Groomer)daftarKaryawan.get(i)).getBiayaPerawatan();
-                        System.out.printf("Biaya Perawatan\t\t= %.0f\n\n",biaya);
+                        System.out.printf("Biaya Perawatan\t= Rp.%s\n\n",decimalFormat.format(biaya));
                     }
                 }
                 break;
@@ -92,7 +169,7 @@ public class Main {
                     if(daftarCustomer.get(i) instanceof Anjing){
                         daftarCustomer.get(i).cetakDataHewan();
                         String ras = ((Anjing)daftarCustomer.get(i)).getRasAnjing();
-                        System.out.printf("Ras\t\t= %s",ras);
+                        System.out.printf("Ras\t\t= %s\n\n",ras);
                     }
                 }
                 break;
@@ -101,7 +178,7 @@ public class Main {
                     if(daftarCustomer.get(i) instanceof Kucing){
                         daftarCustomer.get(i).cetakDataHewan();
                         String ras = ((Kucing)daftarCustomer.get(i)).getRasKucing();
-                        System.out.printf("Ras\t\t= %s",ras);
+                        System.out.printf("Ras\t\t= %s\n\n",ras);
                     }
                 }
                 break;
@@ -110,7 +187,7 @@ public class Main {
                     if(daftarCustomer.get(i) instanceof Kelinci){
                         daftarCustomer.get(i).cetakDataHewan();
                         String ras = ((Kelinci)daftarCustomer.get(i)).getRasKelinci();
-                        System.out.printf("Ras\t\t= %s",ras);
+                        System.out.printf("Ras\t\t= %s\n\n",ras);
                     }
                 }
                 break;
@@ -118,25 +195,26 @@ public class Main {
     }
 
     static void inputAtauOutput(String jenis, String mode){
-        System.out.println("1. Input\n2. Output\n3. Back");
-        System.out.println("Pilihan anda : ");
+        System.out.println("1. Input\n2. Output\n0. Back");
+        System.out.print("Pilihan anda : ");
         int pilihanMode = in.nextInt();
+        in.nextLine();
         if (pilihanMode==1){
             if (mode.equals("Karyawan")) inputKaryawan(jenis);
             if (mode.equals("Hewan")) inputHewan(jenis);
         } else if (pilihanMode==2){
             output(jenis);
-        } else if (pilihanMode==3){
+        } else if (pilihanMode==0){
             pilihKaryawan();
         } else {
-            System.out.println("Tolong berikan input yang valid!");
+            inputInvalid();
             inputAtauOutput(jenis, mode);
         }
     }
 
     static void pilihKaryawan(){
-        System.out.println("1. Admin\n2. Dokter Hewan\n3. Groomer\n4. Back");
-        System.out.print("Pilihan anda :");
+        System.out.println("1. Admin\n2. Dokter Hewan\n3. Groomer\n0. Back");
+        System.out.print("Pilihan anda : ");
         int pilihanMode = in.nextInt();
         switch (pilihanMode){
             case 1:
@@ -148,7 +226,7 @@ public class Main {
             case 3:
                 inputAtauOutput("Groomer","Karyawan");
                 break;
-            case 4:
+            case 0:
                 ui();
                 break;
             default:
@@ -158,8 +236,8 @@ public class Main {
     }
 
     static void speciesHewan(){
-        System.out.println("1. Anjing\n2. Kucing\n3. Kelinci\n4. Back");
-        System.out.print("Pilihan anda :");
+        System.out.println("1. Anjing\n2. Kucing\n3. Kelinci\n0. Back");
+        System.out.print("Pilihan anda : ");
         int pilihanMode = in.nextInt();
         switch (pilihanMode){
             case 1:
@@ -171,7 +249,7 @@ public class Main {
             case 3:
                 inputAtauOutput("Kelinci","Hewan");
                 break;
-            case 4:
+            case 0:
                 ui();
                 break;
             default:
@@ -181,7 +259,7 @@ public class Main {
     }
 
     static void pilihHewan(){
-        System.out.println("1. Kelola Hewan\n2. Proses Layanan\n3. Back");
+        System.out.println("1. Kelola Hewan\n2. Proses Layanan\n0. Back");
         System.out.print("Pilihan Anda : ");
         int pilihanMode = in.nextInt();
         switch (pilihanMode){
@@ -191,7 +269,7 @@ public class Main {
             case 2:
                 layanan();
                 break;
-            case 3:
+            case 0:
                 ui();
                 break;
             default:
@@ -206,15 +284,17 @@ public class Main {
         for (int i=0;i<daftarCustomer.size();i++){
             String namaHewan = daftarCustomer.get(i).getNamaHewan();
             String speciesHewan = daftarCustomer.get(i).getSpeciesHewan();
-            System.out.printf("%d. %s hewan %s",i+1,namaHewan,speciesHewan);
+            System.out.printf("%d. %s hewan %s\n",i+1,namaHewan,speciesHewan);
         }
     }
 
     static void listDokter(){
         for (int i=0;i<daftarKaryawan.size();i++){
             if (daftarKaryawan.get(i) instanceof DokterHewan){
-                String namaDokter = daftarKaryawan.get(i).getNama();
-                System.out.printf("%d. Dokter %s",i+1,namaDokter);
+                DokterHewan dokterHewan = (DokterHewan)daftarKaryawan.get(i);
+                String namaDokter = dokterHewan.getNama();
+                float biayaPeriksa = dokterHewan.getBiayaPeriksa();
+                System.out.printf("%d. Dokter %s Biaya Rp.%s\n",i+1,namaDokter,decimalFormat.format(biayaPeriksa));
             }
         }
     }
@@ -222,8 +302,10 @@ public class Main {
     static void listGroomer(){
         for (int i=0;i<daftarKaryawan.size();i++){
             if (daftarKaryawan.get(i) instanceof Groomer){
-                String namaGroomer = daftarKaryawan.get(i).getNama();
-                System.out.printf("%d. Groomer %s",i+1,namaGroomer);
+                Groomer groomer = (Groomer)daftarKaryawan.get(i);
+                String namaGroomer = groomer.getNama();
+                float biayaMerawat = groomer.getBiayaPerawatan();
+                System.out.printf("%d. Groomer %s Biaya %s\n",i+1,namaGroomer,decimalFormat.format(biayaMerawat));
             }
         }
     }
@@ -232,37 +314,66 @@ public class Main {
         for (int i=0;i<daftarKaryawan.size();i++){
             if (daftarKaryawan.get(i) instanceof Admin){
                 String namaAdmin = daftarKaryawan.get(i).getNama();
-                System.out.printf("%d. Admin %s",i+1,namaAdmin);
+                System.out.printf("%d. Admin %s\n",i+1,namaAdmin);
             }
         }
     }
 
     static Hewan ambilHewan(){
         System.out.print("Pilihan Anda : ");
-        int pilihHewan = in.nextInt();
+        int pilihHewan = 0;
+        try {
+            pilihHewan = in.nextInt();
+        } catch (Exception e) {
+            inputInvalid();
+            return ambilHewan();
+        }
+        if (pilihHewan>daftarCustomer.size()){
+            inputInvalid();
+            return ambilHewan();
+        }
         return daftarCustomer.get(pilihHewan-1);
     }
+    
 
     static Karyawan ambilDokter(){
         System.out.print("Pilihan Anda : ");
-        int pilihDokter = in.nextInt();
+        int pilihDokter = 0;
+        try {
+            pilihDokter = in.nextInt();
+        } catch (Exception e) {
+            inputInvalid();
+            return ambilDokter();
+        }
         return daftarKaryawan.get(pilihDokter-1);
     }
 
     static Karyawan ambilGroomer(){
         System.out.print("Pilihan Anda : ");
-        int pilihGroomer = in.nextInt();
+        int pilihGroomer = 0;
+        try {
+            pilihGroomer = in.nextInt();
+        } catch (Exception e) {
+            inputInvalid();
+            return ambilGroomer();
+        }
         return daftarKaryawan.get(pilihGroomer-1);
     }
 
     static Karyawan ambilAdmin(){
         System.out.print("Pilihan Anda : ");
-        int pilihAdmin = in.nextInt();
+        int pilihAdmin = 0;
+        try {
+            pilihAdmin = in.nextInt();
+        } catch (Exception e) {
+            inputInvalid();
+            return ambilAdmin();
+        }
         return daftarKaryawan.get(pilihAdmin-1);
     }
 
     static void layanan(){
-        System.out.println("Layanan :\n1. Periksa\n2. Perawatan\n3. Proses\n4. Back");
+        System.out.println("Layanan :\n1. Periksa\n2. Perawatan\n3. Proses\n0. Back");
         System.out.print("Pilihan Anda : ");
         int pilihanMode = in.nextInt();
         switch (pilihanMode){
@@ -272,7 +383,7 @@ public class Main {
                     System.out.println("Tidak Jadi Periksa");
                 } else {
                     layanan[0]=true;
-                    System.out.println("Terpilih Perawatan");
+                    System.out.println("Terpilih Periksa");
                 }
                 layanan();
                 break;
@@ -290,21 +401,47 @@ public class Main {
                 listHewan();
                 Hewan hewanTerpilih  = ambilHewan();
                 listAdmin();
-                Admin admin = (Admin) ambilAdmin();
+                Admin admin = new Admin();
+                // Admin admin = (Admin) ambilAdmin();
+                try {
+                    admin = (Admin) ambilAdmin();
+                } catch (Exception e) {
+                    inputInvalid();
+                    layanan();
+                }
+                float tagihanPeriksa = 0;
+                float tagihanMerawat = 0;
                 float biayaPeriksa = 0;
                 float biayaMerawat = 0;
                 if (layanan[0]){
                     listDokter();
-                    DokterHewan dokter = (DokterHewan) ambilDokter();
-                    biayaPeriksa = dokter.periksa(hewanTerpilih);
-                } else if (layanan[1]){
+                    DokterHewan dokter = new DokterHewan();
+                    try {
+                        dokter = (DokterHewan) ambilDokter();
+                    } catch (Exception e) {
+                        inputInvalid();
+                        layanan();
+                    }
+                    tagihanPeriksa = dokter.periksa(hewanTerpilih);
+                    biayaPeriksa = dokter.getBiayaPeriksa();
+                } 
+                if (layanan[1]){
                     listGroomer();
-                    Groomer groomer = (Groomer) ambilGroomer();
-                    biayaMerawat = groomer.merawat(hewanTerpilih);
+                    Groomer groomer = new Groomer();
+                    try {
+                        groomer = (Groomer) ambilGroomer();
+                    } catch (Exception e) {
+                        inputInvalid();
+                        layanan();
+                    }
+                    tagihanMerawat = groomer.merawat(hewanTerpilih);
+                    biayaMerawat = groomer.getBiayaPerawatan();
                 }
-                admin.cetakTagihan(hewanTerpilih,biayaPeriksa,biayaMerawat);
+                layanan[0] = false;
+                layanan[1] = false;
+                admin.cetakTagihan(hewanTerpilih,tagihanPeriksa,tagihanMerawat,biayaPeriksa,biayaMerawat);
                 break;
-            case 4:
+            case 0:
                 pilihHewan();
                 break;
             default:
@@ -316,7 +453,7 @@ public class Main {
 
     static void ui(){
         System.out.println("\nInterface Admin :");
-        System.out.println("1. Karyawan\n2. Customer (Hewan)\n3. Exit");
+        System.out.println("1. Karyawan\n2. Customer (Hewan)\n9. Exit");
         System.out.print("Pilihan anda : ");
         int pilihanMode = in.nextInt();
         switch (pilihanMode){
@@ -328,7 +465,8 @@ public class Main {
                 pilihHewan();
                 ui();
                 break;
-            case 3:
+            case 9:
+                System.out.println("Menghentikan Program...");
                 break;
             default:
                 System.out.println("Tolong berikan input yang valid!");
@@ -341,7 +479,7 @@ public class Main {
         Karyawan dokterApriliano = new DokterHewan("Apriliano","Solo","0808","L","Dokter Hewan",999999,100000);
         Karyawan dokterGustav = new DokterHewan("Gustav","Nganjuk","0808","L","Dokter Hewan",9999999,150000);
         Karyawan adminFarel = new Admin("Farel","Rembang","0808","L","Admin",9999999,0);
-        Karyawan groomerHadi = new DokterHewan("Hadi","Jakarta","0808","L","Groomer",0,200000);
+        Karyawan groomerHadi = new Groomer("Hadi","Jakarta","0808","L","Groomer",0,200000);
         Hewan anjingJaved = new Anjing("001","Javed","Hitam",0,"Anjing","Anjing Jahannam");
         daftarKaryawan.add(dokterGustav);
         daftarKaryawan.add(dokterApriliano);

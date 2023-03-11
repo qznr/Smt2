@@ -18,14 +18,6 @@ public class Hewan {
         this.speciesHewan = speciesHewan;
     }
 
-    // public void makan(){
-    //     System.out.printf("%s telah makan.",namaHewan);
-    // }
-
-    // public void tidur(){
-    //     System.out.printf("%s telah tidur",namaHewan);
-    // }
-
     public String getNamaHewan(){
         return this.namaHewan;
     }

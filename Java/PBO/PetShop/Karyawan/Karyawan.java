@@ -1,6 +1,7 @@
 package PetShop.Karyawan;
-
+import java.text.DecimalFormat;
 public class Karyawan {
+    DecimalFormat decimalFormat = new DecimalFormat("###,###.00");
     private String nama;
     private String alamat;
     private String telepon;
@@ -30,7 +31,7 @@ public class Karyawan {
         System.out.println("Telepon\t\t= " + telepon);
         System.out.println("Jenis Kelamin\t= " + jenisKelamin);
         System.out.println("Kategori\t= " + kategoriKaryawan);
-        System.out.println("Gaji\t\t= Rp." + gaji);
+        System.out.println("Gaji\t\t= Rp." + decimalFormat.format(gaji));
     }
 
     

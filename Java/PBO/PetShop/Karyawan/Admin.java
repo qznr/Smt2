@@ -3,15 +3,19 @@ import PetShop.Customer.Hewan;
 import java.text.DecimalFormat;
 
 public class Admin extends Karyawan{
-    private int menangani;
+    private int terlayani;
     DecimalFormat decimalFormat = new DecimalFormat("###,###.00");
 
     public Admin(){
     }
 
-    public Admin(String nama, String alamat, String telepon, String jenisKelamin, String kategoriKaryawan, int gaji, int menangani){
+    public Admin(String nama, String alamat, String telepon, String jenisKelamin, String kategoriKaryawan, int gaji, int terlayani){
         super(nama,alamat,telepon,jenisKelamin,kategoriKaryawan, gaji);
-        this.menangani = menangani;
+        this.terlayani = terlayani;
+    }
+
+    public int getTerlayani(){
+        return this.terlayani;
     }
 
     public Karyawan inputDataKaryawan(String nama, String alamat, String telepon, String jenisKelamin, String kategoriKaryawan, int gaji){
@@ -24,16 +28,23 @@ public class Admin extends Karyawan{
         return hewan;
     }
 
-    public void cetakTagihan(Hewan hewan, float biayaPeriksa, float biayaMerawat){
-        this.menangani++;
+    public void cetakTagihan(Hewan hewan, float tagihanPeriksa, float tagihanMerawat, float biayaPeriksa, float biayaMerawat){
+        this.terlayani++;
+        System.out.printf("\n%16s\n","Resi");
+        System.out.println("==============================");
         hewan.cetakDataHewan();
-        System.out.println("==============");
-        if (biayaPeriksa!=0){
-            System.out.printf("Biaya Periksa\tRp.%s\n",decimalFormat.format(biayaPeriksa));
+        float tagihanAdmin = 0;
+        System.out.println("==============================");
+        if (tagihanPeriksa!=0){
+            System.out.printf("Biaya Periksa\tRp.%s\n",decimalFormat.format(tagihanPeriksa-biayaPeriksa));
+            tagihanAdmin += biayaPeriksa;
         }
-        if (biayaMerawat!=0){
-            System.out.printf("Biaya Merawat\tRp.%s\n",decimalFormat.format(biayaMerawat));
+        if (tagihanMerawat!=0){
+            System.out.printf("Biaya Merawat\tRp.%s\n",decimalFormat.format(tagihanMerawat-biayaMerawat));
+            tagihanAdmin += biayaMerawat;
         }
-        System.out.printf("Total Biaya\tRp.%s",decimalFormat.format(biayaPeriksa+biayaMerawat));
+        float totalBiaya = tagihanPeriksa+tagihanMerawat;
+        if (tagihanAdmin!=0) System.out.printf("Biaya Admin\tRp.%s\n",decimalFormat.format(tagihanAdmin));
+        System.out.printf("Total Biaya\tRp.%s\n",decimalFormat.format(totalBiaya));
     }
 }
