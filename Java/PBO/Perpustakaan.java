@@ -118,5 +118,6 @@ public class Perpustakaan {
                 System.out.printf("Royalti 10%%\t: Rp.%s\n",buku.jumlahRoyalti(penjualan.get(i)));
             }
         }
+        in.close();
     }
 }
