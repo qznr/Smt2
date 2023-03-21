@@ -104,11 +104,11 @@ public class Solution {
             splitted = command.split(" ");
 
             if (splitted[0].toLowerCase().equals("addfirst")) {
-                CSLL.addFirst(splitted[1].toLowerCase());
+                list.addFirst(splitted[1].toLowerCase());
             } else if (splitted[0].toLowerCase().equals("addlast")) {
-                CSLL.addFirst(splitted[1].toLowerCase());
+                list.addFirst(splitted[1].toLowerCase());
             } else if (splitted[0].toLowerCase().equals("print")) {
-                CSLL.printList();
+                list.printList();
             } else if (splitted[0].toLowerCase().equals("balloon")) {
                 if (splitted[1].toLowerCase().equals("loc")) {
                     /*
