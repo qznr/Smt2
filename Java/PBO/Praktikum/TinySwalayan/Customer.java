@@ -19,7 +19,7 @@ public class Customer {
     public void register() {
         String[] details = UI.getRegistrationDetails();
         while (!details[1].equals(details[2])) {
-            System.out.println("PIN yang dimasukkan tidak sama.");
+            System.out.println("PIN yang dimasukkan tidak sama.\n");
             details = UI.getRegistrationDetails();
         }
         this.customerName = details[0];
