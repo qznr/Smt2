@@ -8,17 +8,21 @@ public class Account {
 
     public Account(String accountType) {
         if(accountType.equals("1") || accountType.equalsIgnoreCase("silver")){
-            this.accountID = "38";
+            this.accountID = "38" + String.format("%08d",accounts.size());
             this.accountType = "Silver";
         }
         if(accountType.equals("2") || accountType.equalsIgnoreCase("gold")){
-            this.accountID = "56";
+            this.accountID = "56" + String.format("%08d",accounts.size());
             this.accountType = "Gold";
         }
         if(accountType.equals("3") || accountType.equalsIgnoreCase("platinum")){
-            this.accountID = "74";
+            this.accountID = "74" + String.format("%08d",accounts.size());
             this.accountType = "Platinum";
         }
+    }
+
+    public String getAccountType(){
+        return accountType;
     }
 
     public String getAccountID() {
@@ -31,7 +35,6 @@ public class Account {
 
     public static void addAccount(String accountType){
         Account account = new Account(accountType);
-        
         accounts.add(account);
     }
 }
