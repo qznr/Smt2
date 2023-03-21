@@ -22,8 +22,11 @@ public class Customer {
         }
         this.customerName = details[0];
         this.pin = details[1];
+        this.attemptCount = 0;
+        this.isBlocked = false;
+        Account.addAccount(details[3]);
         System.out.println("Pendaftaran berhasil.");
-        System.out.println("ID pelanggan anda adalah " + ".");
+        System.out.println("ID pelanggan anda adalah " + Account.getAccounts().get(Account.getAccounts().size() - 1).getAccountID() + ".");
         System.out.println("Silahkan login untuk menggunakan layanan kami.");
     }
     
@@ -67,8 +70,8 @@ public class Customer {
     }
     
     public void changeName(String name) {
-        customerName = name;
-        System.out.println("Your name has been changed to " + customerName);
+        this.customerName = name;
+        System.out.println("Your name has been changed to " + this.customerName);
     }
     
     public void deposit(double amount) {
