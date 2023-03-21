@@ -4,7 +4,10 @@ import java.util.ArrayList;
 public class Account {
     private String accountID;
     private String accountType;
-    private static ArrayList<Account> accounts;
+    private static ArrayList<Account> accounts = new ArrayList<Account>();
+
+    public Account(){
+    }
 
     public Account(String accountType) {
         if(accountType.equals("1") || accountType.equalsIgnoreCase("silver")){

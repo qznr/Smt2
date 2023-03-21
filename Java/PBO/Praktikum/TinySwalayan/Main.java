@@ -2,16 +2,14 @@ package Praktikum.TinySwalayan;
 
 public class Main {
     public static void main(String[] args) {
-        UI.displayMenu();
-        Account account = null;
-        Customer customer = null;
+        Account account = new Account();
+        Customer customer = new Customer();
         UI.displayMenu();
         int choice = UI.getChoice();
         while (choice != 0) {
             switch (choice) {
                 case 1:
                     customer.register();
-                    System.out.println("Pendaftaran berhasil!");
                     do {
                         UI.displayMenu();
                         choice = UI.getChoice();
