@@ -1,9 +1,9 @@
-package PetShop.Karyawan;
+package Praktikum.PetShop.Karyawan;
 
-import PetShop.Customer.Hewan;
-import PetShop.Customer.Kelinci;
-import PetShop.Customer.Kucing;
-import PetShop.Customer.Anjing;
+import Praktikum.PetShop.Customer.Anjing;
+import Praktikum.PetShop.Customer.Hewan;
+import Praktikum.PetShop.Customer.Kelinci;
+import Praktikum.PetShop.Customer.Kucing;
 
 public class DokterHewan extends Karyawan{
     private float biayaPeriksa;

@@ -1,10 +1,11 @@
-package PetShop;
+package Praktikum.PetShop;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
-import PetShop.Customer.*;
-import PetShop.Karyawan.*;
+
+import Praktikum.PetShop.Customer.*;
+import Praktikum.PetShop.Karyawan.*;
 
 public class Main {
     static Scanner in = new Scanner(System.in);
