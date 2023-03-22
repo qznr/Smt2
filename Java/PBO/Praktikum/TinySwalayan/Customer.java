@@ -48,17 +48,17 @@ public class Customer {
                 return null;
             }
             boolean isBlocked = account.getCustomer().getIsBlocked();
-            String pin = account.getCustomer().getPin();
-            int attemptCount = account.getCustomer().getAttemptCount();
-            String customerName = account.getCustomer().getCustomerName();
             if (isBlocked) {
                 System.out.println("Akun Anda telah diblokir!");
                 return null;
             }
+            account.getCustomer().addAttemptCount();
+            String pin = account.getCustomer().getPin();
+            int attemptCount = account.getCustomer().getAttemptCount();
+            String customerName = account.getCustomer().getCustomerName();
             if (account.getAccountID().equals(details[0]) && !pin.equals(details[1])) {
-                account.getCustomer().addAttemptCount();
-                if (attemptCount == 3) {
-                    isBlocked = true;
+                if (attemptCount > 2) {
+                    account.getCustomer().setIsBlocked(true);
                     System.out.println("Anda memasukkan PIN salah 3 kali. Akun anda telah terblokir.");
                     return null;
                 } else {
@@ -71,6 +71,24 @@ public class Customer {
                 return account;
             }
         }
+    }
+    
+
+    public void logout() {
+        System.out.println("Selamat tinggal " + account.getCustomer().getCustomerName() + "!");
+    }
+    
+    public void changeName(String name) {
+        this.customerName = name;
+        System.out.println("Nama anda telah diganti menjadi : " + this.customerName);
+    }
+    
+    public void deposit(double amount) {
+        account.addBalance(amount);
+    }
+    
+    public void withdraw(double amount) {
+        account.addBalance(-amount);
     }
     
     public String[] getCustomerDetails(){
@@ -110,20 +128,7 @@ public class Customer {
         this.account = new Account(tipeAkun, customer, balance);
     }
 
-    public void logout() {
-        System.out.println("Selamat tinggal " + account.getCustomer().getCustomerName() + "!");
-    }
-    
-    public void changeName(String name) {
-        this.customerName = name;
-        System.out.println("Nama anda telah diganti menjadi : " + this.customerName);
-    }
-    
-    public void deposit(double amount) {
-        account.addBalance(amount);
-    }
-    
-    public void withdraw(double amount) {
-        account.addBalance(-amount);
+    public void setIsBlocked(boolean isBlocked){
+        this.isBlocked = isBlocked;
     }
 }
