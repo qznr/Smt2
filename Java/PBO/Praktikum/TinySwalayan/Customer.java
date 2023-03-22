@@ -121,6 +121,18 @@ public class Customer {
         this.attemptCount++;
     }
 
+    public static void addCustomer(String[] details, Double balance){
+        Customer customer = new Customer(details[0], details[1]);
+        customer.setAccount(details[3],customer,balance);
+        Account.addAccount(details[3], customer, balance);
+    }
+
+    public static void addCustomer(String namaCustomer, String pin, String accountType, Double balance){
+        Customer customer = new Customer(namaCustomer, pin);
+        customer.setAccount(accountType,customer,balance);
+        Account.addAccount(accountType, customer, balance);
+    }
+
     public void resetAttemptCount(){
         this.attemptCount = 0;
     }

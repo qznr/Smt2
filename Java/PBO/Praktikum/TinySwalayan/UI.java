@@ -92,12 +92,12 @@ public class UI {
     
     public static void displaySmartphoneList() {
         System.out.println("=== Daftar Smartphone ===");
-        System.out.println("No.\tNama Smartphone\t\tMerk\t\tHarga");
+        System.out.println("No.\tNama Smartphone\t\t\tMerk\t\tQty\tHarga");
         for (int i = 0; i < Smartphone.getSmartphones().size(); i++) {
             Smartphone smartphone = Smartphone.getSmartphones().get(i);
-            System.out.printf("%d.\t%s\t\t%s\t\tRp.%s\n", i + 1, smartphone.getItemName(), smartphone.getBrand(), df.format(smartphone.getPrice()));
+            System.out.printf("%d.\t%-30s\t%s\t\t%d\tRp.%s\n", i + 1, smartphone.getItemName(), smartphone.getBrand(), smartphone.getQuantity(), df.format(smartphone.getPrice()));
         }
-    }
+    }    
 
     public static String getNewName() {
         System.out.print("Masukkan nama baru : ");

@@ -21,6 +21,15 @@ public class Transaction {
         if (item.getQuantity() >= quantity) {
             double price = item.getPrice() * quantity;
             double balanceBefore = account.getBalance();
+            double balanceAfter = balanceBefore - price;
+    
+            // validate minimum balance
+            if (balanceAfter < 10000) {
+                System.out.println("Pembelian gagal. Saldo tidak cukup!");
+                return;
+            }
+    
+            // proceed with the transaction
             if (account.getBalance() >= price) {
                 account.addBalance(-1 * price);
                 item.setQuantity(item.getQuantity() - quantity);
@@ -55,6 +64,7 @@ public class Transaction {
             System.out.println("Pembelian gagal. Barang tidak cukup dengan jumlah permintaan.");
         }
     }
+    
     
     public static ArrayList<Transaction> getTransactions() {
         return transactions;

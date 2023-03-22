@@ -86,9 +86,12 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        Customer.addCustomer("Gustav Platinum", "123", "Platinum", 500000000.0);
+        Customer.addCustomer("Gustav Gold", "123", "Gold", 500000000.0);
+        Customer.addCustomer("Gustav Silver", "123", "Silver", 500000000.0);
         Items.addSmartphone(new Smartphone("0001", "Samsung Note 69", 15000000, "Smartphone", 20, "Samsung"));
         Items.addSmartphone(new Smartphone("0002", "Oppo Reno ZX", 7500000, "Smartphone", 12, "Oppo"));
-        Items.addSmartphone(new Smartphone("0003", "Xiaomi Bobrok",800000, "Smartphone", 20, "Xiaomi"));
+        Items.addSmartphone(new Smartphone("0003", "Xiaomi Redmi Bobrok",800000, "Smartphone", 20, "Xiaomi"));
         int choice;
         do {
             UI.displayMenu();

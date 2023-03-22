@@ -7,7 +7,6 @@ public class Smartphone extends Items {
     public Smartphone(String itemId, String itemName, double price, String category, int quantity, String brand) {
       super(itemId, itemName, price, category, quantity);
       this.brand = brand;
-      Items.addSmartphone(this);
     }
   
     public String getBrand() {
