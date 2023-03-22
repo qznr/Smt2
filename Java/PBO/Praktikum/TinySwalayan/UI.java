@@ -18,8 +18,8 @@ public class UI {
     }
 
     public static String[] getRegistrationDetails() {
-        String[] details = new String[4];
-        System.out.print("Masukkan nama anda: ");
+        String[] details = new String[5];
+        System.out.print("\nMasukkan nama anda: ");
         details[0] = in.nextLine();
         System.out.print("Masukkan PIN: ");
         details[1] = in.nextLine();
@@ -28,6 +28,8 @@ public class UI {
         displayRegistrationAccountType();
         System.out.print("Pilih jenis akun: ");
         details[3] = in.nextLine();
+        System.out.println("Masukkan saldo awal(minimal Rp.10,000) :");
+        details[4] = in.nextLine();
         return details;
     }
 
@@ -48,11 +50,12 @@ public class UI {
     }
 
     public static void displayCustomerMenu() {
-        System.out.println("\nWhat would you like to do?");
-        System.out.println("1. Beli barang");
-        System.out.println("2. Deposit");
-        System.out.println("3. Withdraw");
-        System.out.println("4. Ganti nama");
+        System.out.println("What would you like to do?");
+        System.out.println("1. Cek profil");
+        System.out.println("2. Beli barang");
+        System.out.println("3. Deposit");
+        System.out.println("4. Withdraw");
+        System.out.println("5. Ganti nama");
         System.out.println("9. Logout");
     }
 
