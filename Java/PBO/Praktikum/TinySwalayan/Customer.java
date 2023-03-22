@@ -31,7 +31,6 @@ public class Customer {
             details = UI.getRegistrationDetails();
         }
         Customer customer = new Customer(details[0], details[1]);
-        // account = new Account(details[3], customer, balance);
         customer.setAccount(details[3],customer,balance);
         Account.addAccount(details[3], customer, balance);
         System.out.println("Pendaftaran berhasil.");
@@ -111,15 +110,13 @@ public class Customer {
         this.account = new Account(tipeAkun, customer, balance);
     }
 
-    
-    
     public void logout() {
-        // TODO: Implement logout logic
+        System.out.println("Selamat tinggal " + account.getCustomer().getCustomerName() + "!");
     }
     
     public void changeName(String name) {
         this.customerName = name;
-        System.out.println("Your name has been changed to " + this.customerName);
+        System.out.println("Nama anda telah diganti menjadi : " + this.customerName);
     }
     
     public void deposit(double amount) {
@@ -127,6 +124,6 @@ public class Customer {
     }
     
     public void withdraw(double amount) {
-        // TODO: Implement withdrawal logic
+        account.addBalance(-amount);
     }
 }
