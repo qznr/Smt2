@@ -24,7 +24,7 @@ public class Transaction {
             if (account.getBalance() >= price) {
                 account.addBalance(-1 * price);
                 item.setQuantity(item.getQuantity() - quantity);
-                System.out.println("Pembelian berhasil!.");
+                System.out.println("Pembelian berhasil!");
                 
                 // calculate cashback
                 double cashback = 0;
