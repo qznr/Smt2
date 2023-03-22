@@ -26,7 +26,17 @@ public class Main {
                                 System.out.println("Saldo Akun\t: " + details[2]);
                                 System.out.println("Nama\t\t: " + details[3] + "\n");
                                 break;
+                            case 3:
+                                Double depositAmount = UI.getDepositAmount();
+                                customerAccount.getCustomer().deposit(depositAmount);
+                                break;
+                            case 4:
+                                Double withdrawAmount = UI.getDepositAmount();
+                                customerAccount.getCustomer().withdraw(withdrawAmount);
+                                break;
+                            case 5:
                             case 9:
+                                customerAccount.getCustomer().logout();
                                 break;
                         }
                     } while (customerChoise!=9);
