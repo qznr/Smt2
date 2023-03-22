@@ -29,6 +29,11 @@ public class Main {
                     case 5:
                         changeCustomerName(customerAccount);
                         break;
+                    case 6:
+                        changeCustomerPin(customerAccount);
+                        break;
+                    case 7:
+                        customerTransactionHistory(customerAccount);
                     case 9:
                         customerAccount.getCustomer().logout();
                         break;
@@ -70,10 +75,20 @@ public class Main {
         account.getCustomer().changeName(newName);
     }
 
+    private static void changeCustomerPin(Account account){
+        //TODO : Implement change customer pin
+        System.out.println("Coming soon!");
+    }
+
+    private static void customerTransactionHistory(Account account){
+        //TODO : Implement customer transaction history
+        System.out.println("Coming soon");
+    }
+
     public static void main(String[] args) {
-        Smartphone samsul = new Smartphone("0001", "Samsung Note 69", 15000000, "Smartphone", 20, "Samsung");
-        Smartphone oddo = new Smartphone("0002", "Oppo Reno ZX", 7500000, "Smartphone", 12, "Oppo");
-        Smartphone siomay = new Smartphone("0003", "Xiaomi Bobrok",800000, "Smartphone", 20, "Xiaomi");
+        Items.addSmartphone(new Smartphone("0001", "Samsung Note 69", 15000000, "Smartphone", 20, "Samsung"));
+        Items.addSmartphone(new Smartphone("0002", "Oppo Reno ZX", 7500000, "Smartphone", 12, "Oppo"));
+        Items.addSmartphone(new Smartphone("0003", "Xiaomi Bobrok",800000, "Smartphone", 20, "Xiaomi"));
         int choice;
         do {
             UI.displayMenu();
