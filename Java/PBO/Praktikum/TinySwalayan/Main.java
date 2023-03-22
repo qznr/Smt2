@@ -1,7 +1,7 @@
 package Praktikum.TinySwalayan;
 
 public class Main {
-    
+
     private static void registerCustomer() {
         Customer.register();
     }
@@ -18,7 +18,7 @@ public class Main {
                         displayAccountDetails(customerAccount);
                         break;
                     case 2:
-                        performTransaction();
+                        performTransaction(customerAccount);
                         break;
                     case 3:
                         depositAmount(customerAccount);
@@ -44,15 +44,15 @@ public class Main {
     }
 
     private static void displayAccountDetails(Account account) {
-        String[] details = account.getCustomer().getCustomerDetails();
+        String[] details = account.getCustomer().getCustomerDetails(account);
         System.out.println("\nID Akun\t\t: " + details[0]);
         System.out.println("Tipe Akun\t: " + details[1]);
         System.out.println("Saldo Akun\t: " + details[2]);
         System.out.println("Nama\t\t: " + details[3] + "\n");
     }
 
-    private static void performTransaction() {
-        //TODO : implement transaction logic
+    private static void performTransaction(Account account) {
+        UI.buyUI(account);
     }
 
     private static void depositAmount(Account account) {
@@ -71,6 +71,9 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        Smartphone samsul = new Smartphone("0001", "Samsung Note 69", 15000000, "Smartphone", 20, "Samsung");
+        Smartphone oddo = new Smartphone("0002", "Oppo Reno ZX", 7500000, "Smartphone", 12, "Oppo");
+        Smartphone siomay = new Smartphone("0003", "Xiaomi Bobrok",800000, "Smartphone", 20, "Xiaomi");
         int choice;
         do {
             UI.displayMenu();

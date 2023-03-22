@@ -23,12 +23,13 @@ public class Customer {
         String[] details = UI.getRegistrationDetails();
         Double balance = Double.parseDouble(details[4]);
         while (!details[1].equals(details[2])) {
-            System.out.println("PIN yang dimasukkan tidak sama.\n");
+            System.out.println("PIN yang dimasukkan tidak sama.");
             details = UI.getRegistrationDetails();
         }
         while (balance<10000){
-            System.out.println("Deposit awal kurang dari Rp.10.000\n");
+            System.out.println("Deposit awal kurang dari Rp.10.000");
             details = UI.getRegistrationDetails();
+            balance = Double.parseDouble(details[4]);
         }
         Customer customer = new Customer(details[0], details[1]);
         customer.setAccount(details[3],customer,balance);
@@ -47,32 +48,32 @@ public class Customer {
                 System.out.println("Akun tidak ditemukan!\n");
                 return null;
             }
-            boolean isBlocked = account.getCustomer().getIsBlocked();
+            Customer customer = account.getCustomer();
+            boolean isBlocked = customer.getIsBlocked();
             if (isBlocked) {
                 System.out.println("Akun Anda telah diblokir!");
                 return null;
             }
-            account.getCustomer().addAttemptCount();
-            String pin = account.getCustomer().getPin();
-            int attemptCount = account.getCustomer().getAttemptCount();
-            String customerName = account.getCustomer().getCustomerName();
+            customer.addAttemptCount();
+            String pin = customer.getPin();
+            int attemptCount = customer.getAttemptCount();
+            String customerName = customer.getCustomerName();
             if (account.getAccountID().equals(details[0]) && !pin.equals(details[1])) {
                 if (attemptCount > 2) {
-                    account.getCustomer().setIsBlocked(true);
+                    customer.setIsBlocked(true);
                     System.out.println("Anda memasukkan PIN salah 3 kali. Akun anda telah terblokir.");
                     return null;
                 } else {
                     System.out.println("PIN salah. Tolong ulangi lagi.");
                 }
             } else {
-                account.getCustomer().resetAttemptCount();
+                customer.resetAttemptCount();
                 System.out.println("\nLogin berhasil!");
                 System.out.println("Selamat datang, " + customerName + "!");
                 return account;
             }
         }
-    }
-    
+    }    
 
     public void logout() {
         System.out.println("Selamat tinggal " + account.getCustomer().getCustomerName() + "!");
@@ -91,7 +92,7 @@ public class Customer {
         account.addBalance(-amount);
     }
     
-    public String[] getCustomerDetails(){
+    public String[] getCustomerDetails(Account account){
         String[] details = new String[4];
         details[0] = account.getAccountID();
         details[1] = account.getAccountType();

@@ -1,8 +1,10 @@
 package Praktikum.TinySwalayan;
 import java.util.Scanner;
+import java.text.DecimalFormat;
 
 public class UI {
     private static Scanner in = new Scanner(System.in);
+    private static DecimalFormat df = new DecimalFormat("###,###.00");
 
     public static void displayMenu() {
         System.out.println("Selamat datang di Tiny Swalayan!");
@@ -56,7 +58,45 @@ public class UI {
         System.out.println("3. Deposit");
         System.out.println("4. Withdraw");
         System.out.println("5. Ganti nama");
+        System.out.println("6. Ganti pin");
+        System.out.println("7. Histori transaksi");
         System.out.println("9. Logout");
+    }
+
+    public static void buyUI(Account account) {
+        boolean isValid = false;
+        do {
+            System.out.println("=== Beli Barang ===");
+            System.out.println("Silakan pilih barang yang ingin dibeli:");
+            System.out.println("1. Smartphone");
+            int choice = getChoice();
+    
+            switch (choice) {
+                case 1:
+                    displaySmartphoneList();
+                    System.out.print("Pilih smartphone [masukkan nomor barang]: ");
+                    int smartphoneIndex = in.nextInt() - 1;
+                    in.nextLine(); // consume the newline character
+                    System.out.print("Jumlah yang ingin dibeli: ");
+                    int quantity = in.nextInt();
+                    in.nextLine(); // consume the newline character
+                    Smartphone smartphoneToBuy = Smartphone.getSmartphones().get(smartphoneIndex);
+                    Transaction.buy(account, smartphoneToBuy, quantity);
+                    isValid = true;
+                    break;
+                default:
+                    System.out.println("Pilihan tidak valid, silakan coba lagi.");
+            }
+        } while (!isValid);
+    }
+    
+    public static void displaySmartphoneList() {
+        System.out.println("=== Daftar Smartphone ===");
+        System.out.println("No.\tNama Smartphone\t\tMerk\t\tHarga");
+        for (int i = 0; i < Smartphone.getSmartphones().size(); i++) {
+            Smartphone smartphone = Smartphone.getSmartphones().get(i);
+            System.out.printf("%d.\t%s\t\t%s\t\tRp.%s\n", i + 1, smartphone.getItemName(), smartphone.getBrand(), df.format(smartphone.getPrice()));
+        }
     }
 
     public static String getNewName() {
