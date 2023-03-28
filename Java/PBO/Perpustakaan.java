@@ -47,16 +47,25 @@ public class Perpustakaan {
         }
     }
 
+    // public void perbaikiSinopsis(){
+    //     String[] kalimat = sinopsis.split("(?<=[.!?:])\\s");
+    //     sinopsis = "";
+    //     for (String s : kalimat){
+    //         if (!s.isEmpty()){
+    //             s = s.trim();
+    //             s = s.replaceAll("\\s+"," ");
+    //             sinopsis += Character.toUpperCase(s.charAt(0)) + s.substring(1) + " ";
+    //         }
+    //     }
+    // }
+
     public void perbaikiSinopsis(){
-        String[] kalimat = sinopsis.split("(?<=[.!?:])\\s");
+        String[] kalimat = sinopsis.split("(?<=[.!?])\\s");
         sinopsis = "";
-        for (String s : kalimat){
-            if (!s.isEmpty()){
-                s = s.trim();
-                s = s.replaceAll("\\s+"," ");
-                sinopsis += Character.toUpperCase(s.charAt(0)) + s.substring(1) + " ";
-            }
-        }
+        for (int i = 0; i < kalimat.length; i++) {
+            sinopsis += Character.toUpperCase(kalimat[i].charAt(0)) + kalimat[i].substring(1) + " ";
+            System.out.println((kalimat[i].charAt(0)));
+        }     
     }
 
     public int jumlahKata(){

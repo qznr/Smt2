@@ -1,4 +1,4 @@
-package PetShop.Karyawan;
+package Praktikum.PetShop.Karyawan;
 import java.text.DecimalFormat;
 public class Karyawan {
     DecimalFormat decimalFormat = new DecimalFormat("###,###.00");

@@ -1,6 +1,7 @@
-package PetShop.Karyawan;
-import PetShop.Customer.Hewan;
+package Praktikum.PetShop.Karyawan;
 import java.text.DecimalFormat;
+
+import Praktikum.PetShop.Customer.Hewan;
 
 public class Admin extends Karyawan{
     private int terlayani;

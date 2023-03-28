@@ -1,4 +1,4 @@
-package PetShop.Customer;
+package Praktikum.PetShop.Customer;
 
 public class Anjing extends Hewan{
     private String rasAnjing;

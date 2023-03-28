@@ -1,4 +1,4 @@
-package PetShop.Customer;
+package Praktikum.PetShop.Customer;
 
 public class Kelinci extends Hewan{
     private String rasKelinci;

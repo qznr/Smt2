@@ -1,4 +1,4 @@
-package PetShop.Customer;
+package Praktikum.PetShop.Customer;
 
 public class Hewan {
     private String noPelanggan;
