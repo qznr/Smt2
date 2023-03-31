@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Account {
     private String accountID;
     private String accountType;
-    private Double balance;
+    private double balance;
     private Customer customer; // reference to the corresponding Customer object
     private static ArrayList<Account> accounts = new ArrayList<Account>();
 
@@ -28,7 +28,7 @@ public class Account {
         this.balance = balance;
     }
 
-    public void addBalance(Double balance){
+    public void addBalance(double balance){
         this.balance += balance;
     }
 
@@ -61,7 +61,7 @@ public class Account {
         return null;
     }
 
-    public static void addAccount(String accountType, Customer customer, Double balance){
+    public static void addAccount(String accountType, Customer customer, double balance){
         Account account = new Account(accountType, customer, balance);
         accounts.add(account);
     }
