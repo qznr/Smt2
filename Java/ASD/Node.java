@@ -7,4 +7,9 @@ public class Node {
     public Node(){
         pointer = null;
     }
+
+    public Node(int data){
+        pointer = null;
+        this.data = data;
+    }
 }
