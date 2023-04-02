@@ -1,3 +1,9 @@
+/*/  
+Nama    : Moch. Gustav Ali Rafsandjani
+NIM     : 225150201111015
+Kelas   : TIF-C
+/*/
+
 package Java.ASD.quiz1;
 
 public class FindPath {
