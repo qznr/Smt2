@@ -29,6 +29,7 @@ public class FindPath {
         s.push(nodeStart);
         while (!s.isEmpty()) {
             Node current = s.peek();
+            // System.out.println("Current : " + current.index);
             // Check end node
             if (current.index == end) {
                 return s;
@@ -40,6 +41,8 @@ public class FindPath {
                     if (adjacencyMatrix[current.index][i] == 1 && !isVisited(i)) {
                         queues[current.index].enqueue(new Node(i));
                     }
+                    // System.out.print("New Queue : ");
+                    // queues[current.index].printQueue();
                 }
             }
             if (!queues[current.index].isEmpty()) {
@@ -48,8 +51,11 @@ public class FindPath {
                     next.visited = true;
                     s.push(next);
                 }
+                // System.out.print("Next : " + next.index);
             } else {
+                // System.out.print("Pop : " + next.index);
                 s.pop();
+                
             }
         }
         return s;
