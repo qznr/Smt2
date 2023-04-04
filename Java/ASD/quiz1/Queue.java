@@ -47,10 +47,15 @@ public class Queue {
 
     public void printQueue() {
         Node current = front;
+        if (isEmpty()) {
+            System.out.println("Queue Kosong!");
+            return;
+        }
         while (current != null) {
             System.out.print(current.index + " ");
             current = current.pointer;
         }
         System.out.println();
+        return;
     }
 }
