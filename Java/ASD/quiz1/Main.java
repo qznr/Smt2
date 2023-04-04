@@ -49,13 +49,14 @@ public class Main {
 
         // Stack finalStack = new Stack();
         // while(!path.isEmpty()){
-        //     finalStack.push(path.pop());
+        //     finalStack.push(path.peek());
+        //     path.pop();
         // }
 
-        // while (!path.isEmpty()) {
-        //     Node node = path.pop();
+        // while (!finalStack.isEmpty()) {
+        //     Node node = finalStack.pop();
         //     System.out.print(node.index);
-        //     if (!path.isEmpty()) {
+        //     if (!finalStack.isEmpty()) {
         //         System.out.print(" - ");
         //     }
         // }
