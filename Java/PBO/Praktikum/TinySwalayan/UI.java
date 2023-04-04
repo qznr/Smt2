@@ -76,10 +76,10 @@ public class UI {
                     displaySmartphoneList();
                     System.out.print("Pilih smartphone [masukkan nomor barang]: ");
                     int smartphoneIndex = in.nextInt() - 1;
-                    in.nextLine(); // consume the newline character
+                    in.nextLine();
                     System.out.print("Jumlah yang ingin dibeli: ");
                     int quantity = in.nextInt();
-                    in.nextLine(); // consume the newline character
+                    in.nextLine();
                     Smartphone smartphoneToBuy = Smartphone.getSmartphones().get(smartphoneIndex);
                     Transaction.buy(account, smartphoneToBuy, quantity);
                     isValid = true;

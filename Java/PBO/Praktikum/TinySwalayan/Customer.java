@@ -80,8 +80,10 @@ public class Customer {
     }
     
     public void changeName(String name) {
+        String prevName = customerName;
         this.customerName = name;
-        System.out.println("Nama anda telah diganti menjadi : " + this.customerName);
+        System.out.println("Nama anda sebelumnya\t\t: " + prevName);
+        System.out.println("Nama anda telah diganti menjadi\t: " + this.customerName);
     }
     
     public void deposit(double amount) {

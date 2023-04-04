@@ -22,20 +22,15 @@ public class Transaction {
             double price = item.getPrice() * quantity;
             double balanceBefore = account.getBalance();
             double balanceAfter = balanceBefore - price;
-    
-            // validate minimum balance
             if (balanceAfter < 10000) {
                 System.out.println("Pembelian gagal. Saldo tidak cukup!");
+                System.out.println("Saldo sisa minimal Rp.10,000.00");
                 return;
             }
-    
-            // proceed with the transaction
             if (account.getBalance() >= price) {
                 account.addBalance(-1 * price);
                 item.setQuantity(item.getQuantity() - quantity);
                 System.out.println("Pembelian berhasil!");
-                
-                // calculate cashback
                 double cashback = 0;
                 if (price >= 1000000) {
                     if (account.getAccountType().equals("Silver")) {
@@ -53,9 +48,10 @@ public class Transaction {
                     }
                 }
                 account.addBalance(cashback);
+                double cashbackPercentage = cashback / price * 100;
                 System.out.println("Saldo awal\t: Rp." + df.format(balanceBefore));
                 System.out.println("Harga barang\t: Rp." + df.format(price));
-                System.out.println("Cashback\t: Rp." + df.format(cashback));
+                System.out.printf("Cashback %d%%\t: Rp.%s\n", (int)(cashbackPercentage), df.format(cashback));
                 System.out.println("Saldo sekarang\t: Rp." + df.format(account.getBalance()));
             } else {
                 System.out.println("Pembelian gagal. Saldo tidak cukup!");
