@@ -30,12 +30,24 @@ public class FindPath {
         if (end < 0 || end >= adjacencyMatrix.length) {
             return null;
         }
+
+        boolean isConnected = false;
+        for (int i = 0; i < adjacencyMatrix.length; i++) {
+            if (adjacencyMatrix[end][i] == 1) {
+                isConnected = true;
+                break;
+            }
+        }
+        if (!isConnected) {
+            return null;
+        }
+
         Node nodeStart = new Node(start);
         nodeStart.visited = true;
         s.push(nodeStart);
         while (!s.isEmpty()) {
             Node current = s.peek();
-            // System.out.println("Current : " + current.index);
+            System.out.println("Current : " + current.index);
             // Check end node
             if (current.index == end) {
                 return s;
@@ -47,9 +59,12 @@ public class FindPath {
                     if (adjacencyMatrix[current.index][i] == 1 && !isVisited(i)) {
                         queues[current.index].enqueue(new Node(i));
                     }
-                    // System.out.print("New Queue : ");
-                    // queues[current.index].printQueue();
                 }
+                System.out.print("New Queue : ");
+                queues[current.index].printQueue();
+            } else {
+                System.out.print("Current Queue : ");
+                queues[current.index].printQueue();
             }
             if (!queues[current.index].isEmpty()) {
                 Node next = queues[current.index].dequeue();
@@ -57,9 +72,9 @@ public class FindPath {
                     next.visited = true;
                     s.push(next);
                 }
-                // System.out.print("Next : " + next.index);
+                System.out.println("Next : " + next.index);
             } else {
-                // System.out.print("Pop : " + next.index);
+                System.out.println("Pop : " + s.peek().index);
                 s.pop();
                 
             }

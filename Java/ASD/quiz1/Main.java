@@ -18,8 +18,8 @@ public class Main {
             {0,1,0,0,0,0,0,1},
             {0,0,0,0,0,0,1,0}
         };
-        int start = 7;
-        int end = 2;
+        int start = 0;
+        int end = 7;
 
         // Queue[] queues = new Queue[adjacencyMatrix.length];
         // for (int i = 0; i < adjacencyMatrix.length; i++) {
