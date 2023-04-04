@@ -47,7 +47,7 @@ public class FindPath {
         s.push(nodeStart);
         while (!s.isEmpty()) {
             Node current = s.peek();
-            System.out.println("Current : " + current.index);
+            // System.out.println("Current : " + current.index);
             // Check end node
             if (current.index == end) {
                 return s;
@@ -60,11 +60,11 @@ public class FindPath {
                         queues[current.index].enqueue(new Node(i));
                     }
                 }
-                System.out.print("New Queue : ");
-                queues[current.index].printQueue();
+                // System.out.print("New Queue : ");
+                // queues[current.index].printQueue();
             } else {
-                System.out.print("Current Queue : ");
-                queues[current.index].printQueue();
+                // System.out.print("Current Queue : ");
+                // queues[current.index].printQueue();
             }
             if (!queues[current.index].isEmpty()) {
                 Node next = queues[current.index].dequeue();
@@ -72,9 +72,9 @@ public class FindPath {
                     next.visited = true;
                     s.push(next);
                 }
-                System.out.println("Next : " + next.index);
+                // System.out.println("Next : " + next.index);
             } else {
-                System.out.println("Pop : " + s.peek().index);
+                // System.out.println("Pop : " + s.peek().index);
                 s.pop();
                 
             }
