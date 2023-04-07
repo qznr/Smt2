@@ -35,8 +35,4 @@ public class Dosen extends CivitasAkademik{
     public void setGaji(String gaji) {
         this.gaji = gaji;
     }
-
-    
-
-    
 }

@@ -17,12 +17,12 @@ public class KRS {
     }
 
     public void tambahMatkul(MataKuliah newMatkul){
-        if (jumlahSksTerambil <= 24){
+        if (jumlahSksTerambil < 24){
             jumlahMatkulTerambil++;
             jumlahSksTerambil += newMatkul.getSks();
             matkul[jumlahMatkulTerambil-1] = newMatkul;
         } else {
-            System.out.println("SKS melebihi 24");
+            System.out.println("MK " + newMatkul.getNamaMatkul() + " Tidak terambil! SKS telah melebihi 24");
         }
     }
 
@@ -37,6 +37,7 @@ public class KRS {
         for (int i = 0; i < jumlahMatkulTerambil; i++) {
             Dosen dosen = matkul[i].getDsn();
             System.out.println("Mata Kuliah " + (i+1));
+            System.out.println("SKS Mata Kuliah: " + matkul[i].getSks());
             System.out.println("Nama Mata Kuliah: " + matkul[i].getNamaMatkul());
             System.out.println("Kode Mata Kuliah: " + matkul[i].getKodeMatkul());
             System.out.println("Dosen Pengampu: " + dosen.getNama());

@@ -11,6 +11,7 @@ public class Mahasiswa extends CivitasAkademik{
     }
 
     public void tampilkanData() {
+        System.out.println("Data Mahasiswa");
         System.out.println("Nama: " + getNama());
         System.out.println("Program Studi: " + getProdi());
         System.out.println("Fakultas: " + getFakultas());
