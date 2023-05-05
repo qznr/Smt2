@@ -15,6 +15,7 @@ public class TreeQueue<T> {
         } else {
             newNode.left = rear;
             rear.right = newNode;
+            rear = newNode;
         }
         size++;
     }

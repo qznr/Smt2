@@ -1,5 +1,7 @@
 package Java.ASD.Praktikum.Tree;
 
+import javax.swing.text.html.FormView;
+
 public class CompleteBinaryTree<T> {
     Node<T> root;
     int size;
@@ -7,7 +9,7 @@ public class CompleteBinaryTree<T> {
     boolean isEmpty(){
         return root == null;
     }
-
+    
     void insert(T data){
         Node<T> newNode = new Node<T>(data);
         if (isEmpty()){
