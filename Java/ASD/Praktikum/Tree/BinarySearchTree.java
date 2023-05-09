@@ -1,6 +1,6 @@
 package Java.ASD.Praktikum.Tree;
 
-public class BinarySearchTree<T> {
+public class BinarySearchTree {
     NodeBST root;
     int size;
 

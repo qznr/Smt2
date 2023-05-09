@@ -11,11 +11,10 @@ public class TreeQueue<T> {
     void enqueue(T data){
         Node<T> newNode = new Node<T>(data);
         if (isEmpty()){
-            front = rear= newNode;
+            front = rear = newNode;
         } else {
             newNode.left = rear;
             rear.right = newNode;
-            rear = newNode;
         }
         size++;
     }
