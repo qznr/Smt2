@@ -1,12 +1,20 @@
-package Java.PBO.Praktikum.Labkomdas;
-
-import java.text.DecimalFormat;
+package Praktikum.Labkomdas;
 
 public class Kalkulator {
-    double totalHarga;
-    DecimalFormat df = new DecimalFormat("###,###.00");
 
-    static double penjumlahan(double harga, double jumlahBarang) {
-        return 
+    static double penjumlahan(double a, double b) {
+        return a + b;
+    }
+
+    static double pengurangan(double a, double b) {
+        return a + b;
+    }
+
+    static double perkalian(double a, double b) {
+        return a * b;
+    }
+
+    static double pembagian(double a, double b) {
+        return a / b;
     }
 }
