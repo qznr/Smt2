@@ -1,0 +1,11 @@
+insert 100
+insert 55
+insert 24
+insert 37
+insert 48
+insert 40
+print preorder
+print inorder
+print postorder
+print levels
+exit

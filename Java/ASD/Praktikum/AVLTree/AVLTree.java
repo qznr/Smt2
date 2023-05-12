@@ -8,9 +8,8 @@ public class AVLTree {
         return root == null;
     }
 
-    // Insert data baru
-    void insert(Node root, int data) {
-        // Memanggil fungsi insert rekursif dengan node root.
+    void insert(int data) {
+        // Memanggil fungsi insert rekursif dengan node root dan data yang ingin dimasukkan
         root = insertRecursive(root, data);
     }
 
@@ -19,7 +18,7 @@ public class AVLTree {
 
         // Jika node kosong buat baru.
         if (node == null) {
-            return new Node(data);
+            return (new Node(data));
         }
 
         // Binary Search Tree seperti biasa.
@@ -41,18 +40,18 @@ public class AVLTree {
         int balance = getBalanceFactor(node);
 
         // Tidak seimbang
-        // 
+
         if (balance > 1 && data < node.left.data) {
-            return rightRotate(node);
-        }
-        
-        if (balance > 1 && data > node.left.data) {
-            node.left = leftRotate(node);
             return rightRotate(node);
         }
 
         if (balance < -1 && data > node.right.data) {
             return leftRotate(node);
+        }
+
+        if (balance > 1 && data > node.left.data) {
+            node.left = leftRotate(node.left);
+            return rightRotate(node);
         }
 
         if (balance < -1 && data < node.right.data) {
@@ -78,7 +77,7 @@ public class AVLTree {
 
     Node leftRotate(Node node) {
         Node rightNode = node.right;
-        Node leftOfRightNode = rightNode.right;
+        Node leftOfRightNode = rightNode.left;
 
         rightNode.left = node;
         node.right = leftOfRightNode;
