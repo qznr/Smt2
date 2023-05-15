@@ -3,6 +3,7 @@ package Java.PBO.Praktikum.Meneer;
 public class Invoice implements Payable {
     String productName;
     int quantity, pricePerItem;
+    
 
     public Invoice(String productName, int quantity, int pricePerItem) {
         this.productName = productName;
@@ -11,7 +12,7 @@ public class Invoice implements Payable {
     }
 
     void printInvoice() {
-        System.out.printf("%-20s%-20s%-20s\n", productName, pricePerItem, quantity);
+        System.out.printf("%-20s%-20s%-20s\n", productName, df.format(pricePerItem), quantity);
     }
 
     @Override

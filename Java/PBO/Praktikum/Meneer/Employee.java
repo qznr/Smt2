@@ -30,15 +30,15 @@ public class Employee implements Payable {
         System.out.println("========================================================");
         System.out.printf("%-25s: %s\n","Nama", name);
         System.out.printf("%-25s: %s\n","No Registrasi", registrationNumber);
-        System.out.printf("%-25s: %s\n","Gaji", salaryPerMonth);
+        System.out.printf("%-25s: %s\n","Gaji", df.format(salaryPerMonth));
         System.out.println("========================================================");
         System.out.printf("%-20s%-20s%-20s\n","Nama Barang", "Harga Per Barang", "Banyak Pembelian");
         for (int i = 0; i < itemsBought; i++) {
             invoices[i].printInvoice();
         }
         System.out.println("========================================================");
-        System.out.printf("%-25s: %s\n","Banyaknya Invoice", getTotalInvoice());
-        System.out.printf("%-25s: %s\n","Total Gaji Bersih", getPayableAmount());
+        System.out.printf("%-25s: %s\n","Banyaknya Invoice", df.format(getTotalInvoice()));
+        System.out.printf("%-25s: %s\n","Total Gaji Bersih", df.format(getPayableAmount()));
 
     }
 
