@@ -1,5 +1,6 @@
 package Java.PBO.Praktikum.Balls;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -12,6 +13,8 @@ import java.util.TreeMap;
 
 public class Main {
     public static void main(String[] args) {
+        
+        
         Map<Integer, Pemain> timA = new HashMap<>();
         timA.put(1, new Pemain(1, 168, 50));
         timA.put(2, new Pemain(2, 170, 60));
@@ -35,6 +38,7 @@ public class Main {
         timB.put(8, new Pemain(8, 171, 68));
         timB.put(9, new Pemain(9, 168, 65));
         timB.put(10, new Pemain(10, 169, 60));
+
         findPlayersWithSameHeight(timA, timB);
         findPlayersWithSameWeight(timA, timB);
 
@@ -50,6 +54,9 @@ public class Main {
         analyzePlayerWeight(timA, "A");
         analyzePlayerWeight(timB, "B");
     }
+
+    static DecimalFormat cmFormatter = new DecimalFormat("0.00 cm");
+    static DecimalFormat kgFormatter = new DecimalFormat("0.00 kg");
 
     public static void analyzePlayerHeight(Map<Integer, Pemain> team, String teamName) {
         System.out.println("\nKategori Range Tinggi di Tim " + teamName + ":");
@@ -124,13 +131,18 @@ public class Main {
     private static void findPlayersWithSameHeight(Map<Integer, Pemain> teamA, Map<Integer, Pemain> teamB) {
         Map<Integer, Pemain> heightMap = createHeightMap(teamA.values());
         System.out.println("Tinggi badan yang sama:");
+        System.out.printf("%-35s  | %-35s\n", "Tim A", "Tim B");
+        System.out.printf("%-5s|%-15s|%-15s|%-5s|%-15s|%-15s\n", "No", "Tinggi", "Berat", "No", "Tinggi", "Berat");
         for (Pemain pemain : teamB.values()) {
             if (heightMap.containsKey(pemain.tinggi)) {
                 Pemain pemainTimA = heightMap.get(pemain.tinggi);
-                System.out.println("Pemain dengan tinggi " + pemain.tinggi +
-                        " ditemukan di kedua tim (Tim A Pemain No dan berat : " + pemainTimA.noPemain +
-                        ", " + pemainTimA.berat + "kg, Tim B Pemain No dan berat : " +
-                        pemain.noPemain + ", " + pemain.berat + "kg)");
+                System.out.printf("%-5d|%-15s|%-15s|%-5d|%-15s|%-15s\n"
+                , pemainTimA.noPemain
+                , cmFormatter.format(pemain.tinggi)
+                , kgFormatter.format(pemainTimA.berat)
+                , pemain.noPemain
+                , cmFormatter.format(pemain.tinggi)
+                , kgFormatter.format(pemain.berat));
             }
         }
     }
@@ -138,13 +150,18 @@ public class Main {
     private static void findPlayersWithSameWeight(Map<Integer, Pemain> teamA, Map<Integer, Pemain> teamB) {
         Map<Integer, Pemain> weightMap = createWeightMap(teamA.values());
         System.out.println("\nBerat badan yang sama:");
+        System.out.printf("%-35s  | %-35s\n", "Tim A", "Tim B");
+        System.out.printf("%-5s|%-15s|%-15s|%-5s|%-15s|%-15s\n", "No", "Tinggi", "Berat", "No", "Tinggi", "Berat");
         for (Pemain pemain : teamB.values()) {
             if (weightMap.containsKey(pemain.berat)) {
                 Pemain pemainTimA = weightMap.get(pemain.berat);
-                System.out.println("Pemain dengan berat " + pemain.berat +
-                        " ditemukan di kedua tim (Tim A Pemain No dan tinggi : " +
-                        pemainTimA.noPemain + ", " + pemainTimA.tinggi + "cm, Tim B Pemain No dan tinggi : " +
-                        pemain.noPemain + ", " + pemain.tinggi + "cm)");
+                System.out.printf("%-5d|%-15s|%-15s|%-5d|%-15s|%-15s\n"
+                , pemainTimA.noPemain
+                , cmFormatter.format(pemain.tinggi)
+                , kgFormatter.format(pemainTimA.berat)
+                , pemain.noPemain
+                , cmFormatter.format(pemain.tinggi)
+                , kgFormatter.format(pemain.berat));
             }
         }
     }    
@@ -182,4 +199,5 @@ public class Main {
         }
         return weightMap;
     }
+
 }
