@@ -14,7 +14,6 @@ import java.util.TreeMap;
 public class Main {
     public static void main(String[] args) {
         
-        
         Map<Integer, Pemain> timA = new HashMap<>();
         timA.put(1, new Pemain(1, 168, 50));
         timA.put(2, new Pemain(2, 170, 60));
@@ -42,11 +41,11 @@ public class Main {
         findPlayersWithSameHeight(timA, timB);
         findPlayersWithSameWeight(timA, timB);
 
-        findPlayersWithUniqueHeight(timA, timB);
-        findPlayersWithUniqueWeight(timA, timB);
+        findPlayersWithUniqueHeight(timA, timB, "A");
+        findPlayersWithUniqueWeight(timA, timB, "A");
 
-        findPlayersWithUniqueHeight(timB, timA);
-        findPlayersWithUniqueWeight(timB, timA);
+        findPlayersWithUniqueHeight(timB, timA, "B");
+        findPlayersWithUniqueWeight(timB, timA, "B");
         
         analyzePlayerHeight(timA, "A");
         analyzePlayerHeight(timB, "B");
@@ -55,8 +54,8 @@ public class Main {
         analyzePlayerWeight(timB, "B");
     }
 
-    static DecimalFormat cmFormatter = new DecimalFormat("0.00 cm");
-    static DecimalFormat kgFormatter = new DecimalFormat("0.00 kg");
+    static DecimalFormat cmFormatter = new DecimalFormat("0 cm");
+    static DecimalFormat kgFormatter = new DecimalFormat("0 kg");
 
     public static void analyzePlayerHeight(Map<Integer, Pemain> team, String teamName) {
         System.out.println("\nKategori Range Tinggi di Tim " + teamName + ":");
@@ -166,20 +165,22 @@ public class Main {
         }
     }    
 
-    private static void findPlayersWithUniqueHeight(Map<Integer, Pemain> teamA, Map<Integer, Pemain> teamB) {
-        System.out.println("\nKomplemen tinggi badan tim A:");
+    private static void findPlayersWithUniqueHeight(Map<Integer, Pemain> teamA, Map<Integer, Pemain> teamB, String teamName) {
+        Map<Integer, Pemain> heightMap = createHeightMap(teamB.values());
+        System.out.println("\nKomplemen tinggi badan tim " + teamName + ":");
         for (Pemain pemain : teamA.values()) {
-            if (!teamB.containsKey(pemain.tinggi)) {
-                System.out.println("Pemain dengan tinggi " + pemain.tinggi + " hanya ada di Tim A");
+            if (!heightMap.containsKey(pemain.tinggi)) {
+                System.out.println("Pemain dengan tinggi " + pemain.tinggi + " hanya ada di Tim " + teamName);
             }
         }
     }
     
-    private static void findPlayersWithUniqueWeight(Map<Integer, Pemain> teamA, Map<Integer, Pemain> teamB) {
-        System.out.println("\nKomplemen berat badan tim A:");
+    private static void findPlayersWithUniqueWeight(Map<Integer, Pemain> teamA, Map<Integer, Pemain> teamB, String teamName) {
+        Map<Integer, Pemain> weightMap = createWeightMap(teamB.values());
+        System.out.println("\nKomplemen berat badan tim " + teamName + ":");
         for (Pemain pemain : teamA.values()) {
-            if (!teamB.containsKey(pemain.berat)) {
-                System.out.println("Pemain dengan berat " + pemain.berat + " hanya ada di Tim A");
+            if (!weightMap.containsKey(pemain.berat)) {
+                System.out.println("Pemain dengan berat " + pemain.berat + " hanya ada di Tim " + teamName);
             }
         }
     }
