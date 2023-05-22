@@ -1,6 +1,7 @@
 package Java.PBO.Praktikum.Balls;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -9,36 +10,36 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class Main {
-
-    private static String getKey(int tinggi, int berat) {
-        return tinggi + "-" + berat;
-    }
     public static void main(String[] args) {
-        Pemain[] timA = {
-            new Pemain(1,168, 50),
-            new Pemain(2, 170, 60),
-            new Pemain(3, 165, 56),
-            new Pemain(4, 168, 55),
-            new Pemain(5, 172, 60),
-            new Pemain(6, 170, 70),
-            new Pemain(7, 169, 66),
-            new Pemain(8, 165, 56),
-            new Pemain(9, 171, 72),
-            new Pemain(10, 166, 56),
-        };
+        ArrayList<Pemain> timA = new ArrayList<>(
+            Arrays.asList(
+                new Pemain(1, 168, 50),
+                new Pemain(2, 170, 60),
+                new Pemain(3, 165, 56),
+                new Pemain(4, 168, 55),
+                new Pemain(5, 172, 60),
+                new Pemain(6, 170, 70),
+                new Pemain(7, 169, 66),
+                new Pemain(8, 165, 56),
+                new Pemain(9, 171, 72),
+                new Pemain(10, 166, 56)
+            )
+        );
 
-        Pemain[] timB = {
-            new Pemain(1, 170, 66),
-            new Pemain(2, 167, 60),
-            new Pemain(3, 165, 59),
-            new Pemain(4, 166,58),
-            new Pemain(5, 168,58),
-            new Pemain(6, 175, 71),
-            new Pemain(7, 172, 68),
-            new Pemain(8, 171, 68),
-            new Pemain(9, 168, 65),
-            new Pemain(10, 169, 60),
-        };
+        ArrayList<Pemain> timB = new ArrayList<>(
+            Arrays.asList(
+                new Pemain(1, 170, 66),
+                new Pemain(2, 167, 60),
+                new Pemain(3, 165, 59),
+                new Pemain(4, 166,58),
+                new Pemain(5, 168,58),
+                new Pemain(6, 175, 71),
+                new Pemain(7, 172, 68),
+                new Pemain(8, 171, 68),
+                new Pemain(9, 168, 65),
+                new Pemain(10, 169, 60)
+            )
+        );
 
         Map<Integer, Pemain> tinggiMap = new HashMap<>();
         Map<Integer, Pemain> beratMap = new HashMap<>();
@@ -105,6 +106,10 @@ public class Main {
         
         // Kategori range tinggi di Tim A
         System.out.println("\nKategori Range Tinggi di Tim A:");
+        int minRangeTinggiA = Collections.min(timA, Comparator.comparing((Pemain p) -> p.tinggi)).tinggi;
+        int maxRangeTinggiA = Collections.max(timA, Comparator.comparing((Pemain p) -> p.tinggi)).tinggi;
+        System.out.println("Tinggi Min: " + minRangeTinggiA + " cm");
+        System.out.println("Tinggi Max: " + maxRangeTinggiA + " cm");
         TreeMap<Integer, List<Pemain>> rangeTinggiTimA = new TreeMap<>();
         for (Pemain pemain : timA) {
             int tinggiGroup = pemain.tinggi / 10 * 10; // Mengelompokkan pemain berdasarkan kelipatan 10 tinggi badan
@@ -127,6 +132,10 @@ public class Main {
 
         // Kategori range tinggi di Tim B
         System.out.println("\nKategori Range Tinggi di Tim B:");
+        int minRangeTinggiB = Collections.min(timB, Comparator.comparing((Pemain p) -> p.tinggi)).tinggi;
+        int maxRangeTinggiB = Collections.max(timB, Comparator.comparing((Pemain p) -> p.tinggi)).tinggi;
+        System.out.println("Tinggi Min: " + minRangeTinggiB + " cm");
+        System.out.println("Tinggi Max: " + maxRangeTinggiB + " cm");
         TreeMap<Integer, List<Pemain>> rangeTinggiTimB = new TreeMap<>();
         for (Pemain pemain : timB) {
             int tinggiGroup = pemain.tinggi / 10 * 10; // Mengelompokkan pemain berdasarkan kelipatan 10 tinggi badan
@@ -149,6 +158,10 @@ public class Main {
 
         // Kategori range berat di Tim A
         System.out.println("\nKategori Range Berat di Tim A:");
+        int minRangeBeratA = Collections.min(timA, Comparator.comparing((Pemain p) -> p.berat)).berat;
+        int maxRangeBeratA = Collections.max(timA, Comparator.comparing((Pemain p) -> p.berat)).berat;
+        System.out.println("Berat Min: " + minRangeBeratA + " kg");
+        System.out.println("Berat Max: " + maxRangeBeratA + " kg");
         TreeMap<Integer, List<Pemain>> rangeBeratTimA = new TreeMap<>();
         for (Pemain pemain : timA) {
             int beratGroup = pemain.berat / 10 * 10; // Mengelompokkan pemain berdasarkan kelipatan 10 berat badan
@@ -171,6 +184,10 @@ public class Main {
 
         // Kategori range berat di Tim B
         System.out.println("\nKategori Range Berat di Tim B:");
+        int minRangeBeratB = Collections.min(timB, Comparator.comparing((Pemain p) -> p.berat)).berat;
+        int maxRangeBeratB = Collections.max(timB, Comparator.comparing((Pemain p) -> p.berat)).berat;
+        System.out.println("Berat Min: " + minRangeBeratB + " kg");
+        System.out.println("Berat Max: " + maxRangeBeratB + " kg");
         TreeMap<Integer, List<Pemain>> rangeBeratTimB = new TreeMap<>();
         for (Pemain pemain : timB) {
             int beratGroup = pemain.berat / 10 * 10; // Mengelompokkan pemain berdasarkan kelipatan 10 berat badan
@@ -190,5 +207,6 @@ public class Main {
                 System.out.printf("- %d (%d kg)%n", pemain.noPemain, pemain.berat);
             }
         }
+
     }
 }
