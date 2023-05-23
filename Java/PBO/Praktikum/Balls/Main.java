@@ -2,7 +2,6 @@ package Java.PBO.Praktikum.Balls;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -52,6 +51,18 @@ public class Main {
 
         analyzePlayerWeight(timA, "A");
         analyzePlayerWeight(timB, "B");
+
+        System.out.println("\nUpdate berat data TimB yang memiliki tinggi 168cm menjadi 66kg");
+        
+        updatePlayersWithTargetAttribute(timB, 168, "Tinggi", "Berat", 66);
+        printMap(timB);
+
+        System.out.println("\nMap data tinggi tim A yang sama dengan tim B");
+        Map<Integer, Pemain> sameHeight = getPlayersWithSameHeight(timA,timB);
+        printMap(sameHeight);
+        
+        System.out.println("\nDari map tinggi sama tadi, ini tim A tingginya >168cm");
+        printMap(getPlayersWithValueGreaterThan(sameHeight, "tinggi", 168));
     }
 
     static DecimalFormat cmFormatter = new DecimalFormat("0 cm");
@@ -163,7 +174,7 @@ public class Main {
                 , kgFormatter.format(pemain.berat));
             }
         }
-    }    
+    }
 
     private static void findPlayersWithUniqueHeight(Map<Integer, Pemain> teamA, Map<Integer, Pemain> teamB, String teamName) {
         Map<Integer, Pemain> heightMap = createHeightMap(teamB.values());
@@ -201,4 +212,85 @@ public class Main {
         return weightMap;
     }
 
+    public static void updatePlayersWithTargetAttribute(Map<Integer, Pemain> players, int targetValue, String targetAttribute, String attributeToUpdate, int updateValue) {
+        for (Pemain player : players.values()) {
+            if (player.tinggi == targetValue && targetAttribute.equals("tinggi")) {
+                if (attributeToUpdate.equals("tinggi")) {
+                    player.tinggi = updateValue;
+                } else if (attributeToUpdate.equals("berat")) {
+                    player.berat = updateValue;
+                } else {
+                    System.out.println("Invalid attribute to update.");
+                    return;
+                }
+            } else if (player.berat == targetValue && targetAttribute.equals("berat")) {
+                if (attributeToUpdate.equals("tinggi")) {
+                    player.tinggi = updateValue;
+                } else if (attributeToUpdate.equals("berat")) {
+                    player.berat = updateValue;
+                } else {
+                    System.out.println("Invalid attribute to update.");
+                    return;
+                }
+            }
+        }
+        System.out.println("Players with " + targetAttribute + " " + targetValue + " updated successfully.");
+    }
+
+    private static Map<Integer, Pemain> getPlayersWithSameHeight(Map<Integer, Pemain> teamA, Map<Integer, Pemain> teamB) {
+        Map<Integer, Pemain> heightMap = createHeightMap(teamA.values());
+        Map<Integer, Pemain> playersWithSameHeight = new HashMap<>();
+    
+        for (Pemain pemain : teamB.values()) {
+            if (heightMap.containsKey(pemain.tinggi)) {
+                Pemain pemainTimA = heightMap.get(pemain.tinggi);
+                playersWithSameHeight.put(pemainTimA.noPemain, pemainTimA);
+            }
+        }
+        return playersWithSameHeight;
+    }
+    
+    private static void printPlayerMap(Map<Integer, List<Pemain>> playerMap) {
+        System.out.printf("%-5s|%-15s|%-15s\n", "No", "Tinggi", "Berat");
+        
+        for (List<Pemain> players : playerMap.values()) {
+            for (Pemain player : players) {
+                System.out.printf("%-5d|%-15s|%-15s\n",
+                        player.noPemain,
+                        cmFormatter.format(player.tinggi),
+                        kgFormatter.format(player.berat));
+            }
+        }
+    }
+
+    private static void printMap(Map<Integer, Pemain> map) {
+        System.out.printf("%-5s|%-15s|%-15s\n", "No", "Tinggi", "Berat");
+        for (Pemain pemain : map.values()) {
+            System.out.printf("%-5d|%-15s|%-15s\n",
+                    pemain.noPemain,
+                    cmFormatter.format(pemain.tinggi),
+                    kgFormatter.format(pemain.berat));
+        }
+    }
+
+    private static Map<Integer, Pemain> getPlayersWithValueGreaterThan(Map<Integer, Pemain> team, String attribute, double minValue) {
+        Map<Integer, Pemain> playersWithGreaterValue = new HashMap<>();
+    
+        for (Pemain pemain : team.values()) {
+            double attributeValue;
+            if (attribute.equalsIgnoreCase("tinggi")) {
+                attributeValue = pemain.tinggi;
+            } else if (attribute.equalsIgnoreCase("berat")) {
+                attributeValue = pemain.berat;
+            } else {
+                throw new IllegalArgumentException("Invalid attribute specified. Must be 'tinggi' or 'berat'.");
+            }
+            
+            if (attributeValue > minValue) {
+                playersWithGreaterValue.put(pemain.noPemain, pemain);
+            }
+        }
+    
+        return playersWithGreaterValue;
+    }
 }
