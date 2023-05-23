@@ -1,122 +1,101 @@
 package Java.ASD.Praktikum;
 import java.util.Scanner;
 
-class Node{
-    String nama;
-    float ipk;
-    boolean sertifikat;
-    Node pointer;
 
-    public Node(String nama, float ipk, boolean sertifikat){
-        this.nama = nama;
-        this.ipk = ipk;
-        this.sertifikat = sertifikat;
-        this.pointer = null;
+class Node {
+	 /*
+      * KATA MASBRO KERJAIN DISINI !!
+      */
+    String title;
+    int plays;
+    Node next, prev;
+    
+    Node(String title, int plays) {
+        this.title = title;
+        this.plays = plays;
     }
 }
 
-class Queue {
-    Node rear, front;
+class LinkedList {
+	/*
+	 * KATA MASBRO KERJAIN DISINI !!
+     */
+    Node head, tail;
     int size;
-
-    public Queue(){
-        this.rear = null;
-        this.front = null;
-        this.size = 0;
+    
+    boolean isEmpty() {
+        return head == null && tail == null;
     }
-
-    boolean isEmpty(){
-        return front == null;
-    }
-
-    void enqueue(String nama, float ipk, boolean sertifikat){
-        Node newNode = new Node(nama, ipk, sertifikat);
-        if (rear == null) {
-            rear = newNode;
-            front = newNode;
-        } else {
-            rear.pointer = newNode;
-            rear = newNode;
+    
+    void addFirst(String title, int plays) {
+        Node newNode = new Node(title, plays);
+        if (isEmpty()) {
+            head = tail = newNode;
+            size++;
+            return;
         }
+        newNode.next = head;
+        head.prev = newNode;
+        head = newNode;
         size++;
     }
-
-    Node dequeue(){
-        if (isEmpty()) {
-            return null;
+    
+    void sort() {
+        if (isEmpty() || size == 1) {
+            return; // No need to sort empty list or list with only one element
         }
-        Node temp = front;
-        front = front.pointer;
-        if (front == null) {
-            rear = null;
-        }
-        size--;
-        return temp;
-    }
-
-    float getIpk(Node node){
-        float ipk = node.ipk;
-        if (node.sertifikat) {
-            ipk += 0.2;
-        }
-        return ipk;
-    }
-
-
-    void selectionSort(){
-        Node i = front;
-        while (i != null) {
-            Node min = i;
-            Node j = i.pointer;
-            while (j != null) {
-                if (getIpk(j) > getIpk(min)) {
-                    min = j;
-                }
-                j = j.pointer;
+        
+        Node current = head.next;
+        while (current != null) {
+            Node insertionNode = current;
+            int plays = insertionNode.plays;
+            
+            // Find the correct position to insert the current node
+            Node prevNode = insertionNode.prev;
+            while (prevNode != null && prevNode.plays > plays) {
+                prevNode.next.plays = prevNode.plays;
+                insertionNode = prevNode;
+                prevNode = prevNode.prev;
             }
-            if (min != i) {
-                swap(i, min);
+            
+            if (insertionNode != current) {
+                insertionNode.plays = plays;
             }
-            i = i.pointer;
+            
+            current = current.next;
         }
     }
-
-    void swap(Node a, Node b){
-        String tempNama = a.nama;
-        float tempIpk = a.ipk;
-        boolean tempSertifikat = a.sertifikat;
-
-        a.nama = b.nama;
-        a.ipk = b.ipk;
-        a.sertifikat = b.sertifikat;
-
-        b.nama = tempNama;
-        b.ipk = tempIpk;
-        b.sertifikat = tempSertifikat;
-    }    
-
+    
+    void receipify() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.println(temp.title + " " + temp.plays);
+            temp = temp.next;
+        }
+    }
 }
 
-public class Solution {
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        Queue q = new Queue();
-        int n = in.nextInt(); in.nextLine();
-        for (int i = 0; i < n; i++) {
-            String commandLine = in.nextLine();
-            String[] commands = commandLine.split(" ");
-            String nama = commands[0];
-            float ipk = Float.parseFloat(commands[1]);
-            boolean sertifikat = commands[2].equals("1") ? true : false;
-            q.enqueue(nama, ipk, sertifikat);
-        }
-        q.selectionSort();
+/*
+ * BOLEH KALO MAU NAMBAH CLASS BARU !! :D
+ */
 
-        // Print the sorted queue
-        Node current = q.front;
-        while (current != null) {
-            System.out.printf("%s %.1f %d\n", current.nama, current.ipk, current.sertifikat ? 1 : 0);
-            current = current.pointer;
+public class Solution {
+
+    public static void main(String[] args) {
+        /*
+         * KATA MASBRO KERJAIN DISINI !!
+         */
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt(); in.nextLine();
+        LinkedList ll = new LinkedList();
+        for (int i = 0; i < n; i++) {
+            String line = in.nextLine();
+            String[] parts = line.split(" -- ");
+            String title = parts[0];
+            int number = Integer.parseInt(parts[1].trim());
+            ll.addFirst(parts[0],number);
         }
+        ll.sort();
+        ll.receipify();
     }
 }

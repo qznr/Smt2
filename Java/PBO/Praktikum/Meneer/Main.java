@@ -1,4 +1,4 @@
-package Java.PBO.Praktikum.Meneer;
+package Praktikum.Meneer;
 
 public class Main {
     public static void main(String[] args) {
