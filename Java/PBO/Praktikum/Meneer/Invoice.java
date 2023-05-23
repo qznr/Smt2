@@ -1,9 +1,9 @@
-package Java.PBO.Praktikum.Meneer;
+package Praktikum.Meneer;
+import java.text.DecimalFormat;
 
 public class Invoice implements Payable {
-    String productName;
-    int quantity, pricePerItem;
-    
+    private String productName;
+    private int quantity, pricePerItem;
 
     public Invoice(String productName, int quantity, int pricePerItem) {
         this.productName = productName;
@@ -11,8 +11,12 @@ public class Invoice implements Payable {
         this.pricePerItem = pricePerItem;
     }
 
-    void printInvoice() {
-        System.out.printf("%-20s%-20s%-20s\n", productName, df.format(pricePerItem), quantity);
+    public DecimalFormat getDecimalFormat() {
+        return new DecimalFormat("Rp#,##0.00");
+    }
+
+    public void printInvoice() {
+        System.out.printf("%-20s%-20s%-20s\n", productName, getDecimalFormat().format(pricePerItem), quantity);
     }
 
     @Override
