@@ -1,4 +1,4 @@
-package Java.PBO.Praktikum.SortingBalls;
+package Praktikum.SortingBalls;
 
 class Pemain {
     int tinggi, berat, noPemain;

@@ -1,4 +1,4 @@
-package Java.PBO.Praktikum.SortingBalls;
+package Praktikum.SortingBalls;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -52,15 +52,18 @@ public class Main {
         System.out.println("\nTIM A dan TIM B urut berat Descending\nTIM A\t\t\tTIM B");
         print(sortedByWeightTimA, sortedByWeightTimB);
 
-        System.out.println("\nMin dan Max Tinggi");
+        System.out.println("\nMin dan Max Tinggi\n");
         minMaxHeight(timA, timB);
 
-        System.out.println("\nMin dan Max Berat");
+        System.out.println("\nMin dan Max Berat\n");
         minMaxWeight(timA, timB);
 
         Collection<Pemain> timC = timB;
         System.out.println("\nTIM B yang dicopy ke TIM C\nTIM B\t\t\tTIM C");
         print(timB, timC);
+
+        System.out.println("\nImplementasi ArrayList terpisah untuk TIM A dan TIM B\nTIM A\t\t\tTIM B");
+        print(timA, timB);
 
         System.out.println("\nJumlah pemain TIM B yang tingginya 168cm dan 160cm");
         int satuNamLapan = countPlayersWithHeight(timB, 168);
@@ -76,12 +79,12 @@ public class Main {
         System.out.println("Jumlah 53kg :\t" + limaTiga);
         System.out.println("Jumlah Total :\t" + (limaTiga+limaNam));
 
-        boolean sameHeightAndWeightExists = findPlayerWithSameHeightAndWeight(timA, timB);
+        boolean sameHeightAndWeightExists = findPlayerWithSameHeightOrWeight(timA, timB);
 
         if (sameHeightAndWeightExists) {
-            System.out.println("\nPemain yang memiliki tinggi dan berat yang sama ada di kedua tim (TIM A dan TIM B)");
+            System.out.println("\nPemain yang memiliki tinggi atau berat yang sama ada di kedua tim (TIM A dan TIM B)");
         } else {
-            System.out.println("\nTidak ada pemain yang memiliki tinggi dan berat yang sama ada di kedua tim (TIM A dan TIM B)");
+            System.out.println("\nTidak ada pemain yang memiliki tinggi atau berat yang sama ada di kedua tim (TIM A dan TIM B)");
         }
     }
 
@@ -120,9 +123,9 @@ public class Main {
         int maxA = Collections.max(teamA, Comparator.comparing(p -> p.tinggi)).tinggi;
         int minB = Collections.min(teamB, Comparator.comparing(p -> p.tinggi)).tinggi;
         int maxB = Collections.max(teamB, Comparator.comparing(p -> p.tinggi)).tinggi;
-        System.out.println("TIM A\t\t\tTIM B");
-        System.out.println(minA + "\t\t\t" + minB);
-        System.out.println(minB + "\t\t\t" + maxB);
+        System.out.println("\tTIM A\t\t\tTIM B");
+        System.out.println("Min :\t" + minA + "\t\t\t" + minB);
+        System.out.println("Max :\t" + maxA + "\t\t\t" + maxB);
     }
 
     static void minMaxWeight(Collection<Pemain> teamA, Collection<Pemain> teamB) {
@@ -130,9 +133,9 @@ public class Main {
         int maxA = Collections.max(teamA, Comparator.comparing(p -> p.berat)).berat;
         int minB = Collections.min(teamB, Comparator.comparing(p -> p.berat)).berat;
         int maxB = Collections.max(teamB, Comparator.comparing(p -> p.berat)).berat;
-        System.out.println("TIM A\t\t\tTIM B");
-        System.out.println(minA + "\t\t\t" + minB);
-        System.out.println(minB + "\t\t\t" + maxB);
+        System.out.println("\tTIM A\t\t\tTIM B");
+        System.out.println("Min :\t" + minA + "\t\t\t" + minB);
+        System.out.println("Max :\t" + maxA + "\t\t\t" + maxB);
     }
 
     static int countPlayersWithHeight(Collection<Pemain> players, int targetHeight) {
@@ -186,16 +189,24 @@ public class Main {
         }
     }
      
-    static boolean findPlayerWithSameHeightAndWeight(Collection<Pemain> teamA, Collection<Pemain> teamB) {
+    static boolean findPlayerWithSameHeightOrWeight(Collection<Pemain> teamA, Collection<Pemain> teamB) {
         ArrayList<Pemain> sortedTeamA = sortHeight(teamA);
         ArrayList<Pemain> sortedTeamB = sortHeight(teamB);
     
         for (Pemain pemainA : sortedTeamA) {
             int index = Collections.binarySearch(sortedTeamB, pemainA,
-                    Comparator.comparingInt(Pemain::getTinggi).thenComparingInt(Pemain::getBerat));
-        
+                    Comparator.comparingInt(Pemain::getTinggi).thenComparingInt(Pemain::getTinggi));
+    
             if (index >= 0) {
-                // Player with the same height and weight found in both teams
+                // Player with the same height found in both teams
+                return true;
+            }
+    
+            index = Collections.binarySearch(sortedTeamB, pemainA,
+                    Comparator.comparingInt(Pemain::getBerat).thenComparingInt(Pemain::getBerat));
+    
+            if (index >= 0) {
+                // Player with the same weight found in both teams
                 return true;
             }
         }
