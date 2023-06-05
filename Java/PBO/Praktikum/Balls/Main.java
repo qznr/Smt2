@@ -1,5 +1,6 @@
-package Java.PBO.Praktikum.Balls;
+package Praktikum.Balls;
 
+import java.net.SocketTimeoutException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -52,8 +53,12 @@ public class Main {
         analyzePlayerWeight(timA, "A");
         analyzePlayerWeight(timB, "B");
 
+        System.out.println("\nDimplementasi dua Map terpisah yang lalu di print");
+        printTwoMaps(timA, timB);
+
         System.out.println("\nUpdate berat data TimB yang memiliki tinggi 168cm menjadi 66kg");
-        
+        System.out.println("Sebelum : ");
+        printMap(timB);
         updatePlayersWithTargetAttribute(timB, 168, "Tinggi", "Berat", 66);
         printMap(timB);
 
@@ -214,19 +219,19 @@ public class Main {
 
     public static void updatePlayersWithTargetAttribute(Map<Integer, Pemain> players, int targetValue, String targetAttribute, String attributeToUpdate, int updateValue) {
         for (Pemain player : players.values()) {
-            if (player.tinggi == targetValue && targetAttribute.equals("tinggi")) {
-                if (attributeToUpdate.equals("tinggi")) {
+            if (targetAttribute.equalsIgnoreCase("tinggi") && player.tinggi == targetValue) {
+                if (attributeToUpdate.equalsIgnoreCase("tinggi")) {
                     player.tinggi = updateValue;
-                } else if (attributeToUpdate.equals("berat")) {
+                } else if (attributeToUpdate.equalsIgnoreCase("berat")) {
                     player.berat = updateValue;
                 } else {
                     System.out.println("Invalid attribute to update.");
                     return;
                 }
-            } else if (player.berat == targetValue && targetAttribute.equals("berat")) {
-                if (attributeToUpdate.equals("tinggi")) {
+            } else if (targetAttribute.equalsIgnoreCase("berat") && player.berat == targetValue) {
+                if (attributeToUpdate.equalsIgnoreCase("tinggi")) {
                     player.tinggi = updateValue;
-                } else if (attributeToUpdate.equals("berat")) {
+                } else if (attributeToUpdate.equalsIgnoreCase("berat")) {
                     player.berat = updateValue;
                 } else {
                     System.out.println("Invalid attribute to update.");
@@ -248,19 +253,6 @@ public class Main {
             }
         }
         return playersWithSameHeight;
-    }
-    
-    private static void printPlayerMap(Map<Integer, List<Pemain>> playerMap) {
-        System.out.printf("%-5s|%-15s|%-15s\n", "No", "Tinggi", "Berat");
-        
-        for (List<Pemain> players : playerMap.values()) {
-            for (Pemain player : players) {
-                System.out.printf("%-5d|%-15s|%-15s\n",
-                        player.noPemain,
-                        cmFormatter.format(player.tinggi),
-                        kgFormatter.format(player.berat));
-            }
-        }
     }
 
     private static void printMap(Map<Integer, Pemain> map) {
@@ -293,4 +285,26 @@ public class Main {
     
         return playersWithGreaterValue;
     }
+
+    private static void printTwoMaps(Map<Integer, Pemain> mapA, Map<Integer, Pemain> mapB) {
+        System.out.printf("%-35s  | %-35s\n", "Map A", "Map B");
+        System.out.printf("%-5s|%-15s|%-15s|%-5s|%-15s|%-15s\n", "No", "Tinggi", "Berat", "No", "Tinggi", "Berat");
+        
+        for (Map.Entry<Integer, Pemain> entryA : mapA.entrySet()) {
+            Integer keyA = entryA.getKey();
+            Pemain pemainA = entryA.getValue();
+            
+            Pemain pemainB = mapB.get(keyA);
+            if (pemainB != null) {
+                System.out.printf("%-5d|%-15s|%-15s|%-5d|%-15s|%-15s\n",
+                        pemainA.noPemain,
+                        cmFormatter.format(pemainA.tinggi),
+                        kgFormatter.format(pemainA.berat),
+                        pemainB.noPemain,
+                        cmFormatter.format(pemainB.tinggi),
+                        kgFormatter.format(pemainB.berat));
+            }
+        }
+    }
+    
 }
